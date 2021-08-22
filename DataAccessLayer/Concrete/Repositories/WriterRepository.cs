@@ -21,27 +21,12 @@ namespace DataAccessLayer.Concrete.Repositories
             throw new NotImplementedException();
         }
 
-        public void Delete(Heading p)
-        {
-            throw new NotImplementedException();
-        }
-
         public Writer Get(Expression<Func<Writer, bool>> filter)
         {
             throw new NotImplementedException();
         }
 
-        public Heading Get(Expression<Func<Heading, bool>> filter)
-        {
-            throw new NotImplementedException();
-        }
-
         public void Insert(Writer p)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Insert(Heading p)
         {
             throw new NotImplementedException();
         }
@@ -56,22 +41,7 @@ namespace DataAccessLayer.Concrete.Repositories
             throw new NotImplementedException();
         }
 
-        public List<Heading> List(Expression<Func<Heading, bool>> filter)
-        {
-            throw new NotImplementedException();
-        }
-
         public void Update(Writer p)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Update(Heading p)
-        {
-            throw new NotImplementedException();
-        }
-
-        List<Heading> IRepository<Heading>.List()
         {
             throw new NotImplementedException();
         }

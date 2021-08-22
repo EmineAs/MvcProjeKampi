@@ -20,15 +20,11 @@ namespace MvcProjeKampi.Controllers
 
             var countWriter = c.Writers.Where(x => x.WriterName.Contains("a")).Count();
 
-
-
             var countCategoryTrue = c.Categories.Where(x => x.CategoryStatus == true).Count();
 
             var countCategoryFalse = c.Categories.Where(x => x.CategoryStatus == false).Count();
 
-            var trueFalseFark = countCategoryTrue - countCategoryFalse;
-
-
+            var trueFalseDif = countCategoryTrue - countCategoryFalse;
 
             var countCategoryList = c.Headings.GroupBy(x => x.CategoryID).Select(y => new { y.Key, Count = y.Count() }).ToList();
 
@@ -52,7 +48,7 @@ namespace MvcProjeKampi.Controllers
             ViewBag.countHeading = countHeading;
             ViewBag.countWriter = countWriter;
             ViewBag.categoryName = categoryName;
-            ViewBag.trueFalseFark = trueFalseFark;
+            ViewBag.trueFalseDif = trueFalseDif;
 
             return View("Index");
         }
