@@ -15,15 +15,15 @@ namespace BusinessLayer.ValidationRules
             RuleFor(x => x.WriterName).NotEmpty().WithMessage("Yazar adını boş geçemezsiniz");
             RuleFor(x => x.WriterSurName).NotEmpty().WithMessage("Yazar soyadını boş geçemezsiniz");
             RuleFor(x => x.WriterAbout).NotEmpty().WithMessage("Hakkımda kısmını boş geçemezsiniz");
-            RuleFor(x => x.WriterAbout).Must(IsThereA).WithMessage("A harfi kullanmalısınız");      
+            RuleFor(x => x.WriterAbout).Must(IsthereA).WithMessage("A harfi kullanmalısınız");
             RuleFor(x => x.WriterName).MinimumLength(2).WithMessage("Lütfen en az 2 karakter girişini yapın");
             RuleFor(x => x.WriterName).MaximumLength(50).WithMessage("Lütfen 50 karakterden fazla değer girişi yapmayın.");
 
         }
 
-        public bool IsThereA(string writerName)
+        private bool IsthereA(string name)
         {
-            bool state = writerName.Contains("a");
+            bool state = name.Contains("a");
             return state;
         }
 

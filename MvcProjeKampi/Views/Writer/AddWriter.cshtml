@@ -10,35 +10,39 @@
 
 @using (Html.BeginForm("AddWriter", "Writer", FormMethod.Post))
 {
-<div class="form-group">
-    @Html.Label("Yazar Adı")
-    @Html.TextBoxFor(x => x.WriterName, new { @class = "form-control" })
-    @Html.ValidationMessageFor(x => x.WriterName)
-    <br />
-    @Html.Label("Yazar Soyadı")
-    @Html.TextBoxFor(x => x.WriterSurName, new { @class = "form-control" })
-    @Html.ValidationMessageFor(x => x.WriterSurName)
-    <br /> 
-    @Html.Label("Yazar Maili")
-    @Html.TextBoxFor(x => x.WriterMail, new { @class = "form-control" })
-    @Html.ValidationMessageFor(x => x.WriterMail)
-    <br />
-    @Html.Label("Yazar Şifresi")
-    @Html.TextBoxFor(x => x.WritePassWord, new { @class = "form-control" })
-    @Html.ValidationMessageFor(x => x.WritePassWord)
-    <br />
-    @Html.Label("Yazar Görsel Linki")
-    @Html.TextBoxFor(x => x.WriterImage, new { @class = "form-control", @Value = "/AdminLTE-3.0.4/dist/img/2.png" })
-    @Html.ValidationMessageFor(x => x.WriterImage)
-    <br /> 
-    @Html.Label("Yazar Hakkında")
-    @Html.TextBoxFor(x => x.WriterAbout, new { @class = "form-control" })
-    @Html.ValidationMessageFor(x => x.WriterAbout)
+    <div class="form-group">
+        @Html.Label("Yazar Adı")
+        @Html.TextBoxFor(x => x.WriterName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.WriterName, "", new { @style = "color:red" })
+        <br />
+        @Html.Label("Yazar Soyadı")
+        @Html.TextBoxFor(x => x.WriterSurName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.WriterSurName, "", new { @style = "color:red" })
+        <br />
+        @Html.Label("Yazar Maili")
+        @Html.TextBoxFor(x => x.WriterMail, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.WriterMail, "", new { @style = "color:red" })
+        <br />
+        @Html.Label("Yazar Şifresi")
+        @Html.TextBoxFor(x => x.WritePassWord, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.WritePassWord, "", new { @style = "color:red" })
+        <br />
+        @Html.Label("Yazar Görsel Linki")
+        @Html.TextBoxFor(x => x.WriterImage, new { @class = "form-control", @Value = "/AdminLTE-3.0.4/dist/img/2.png" })
+        @Html.ValidationMessageFor(x => x.WriterImage, "", new { @style = "color:red" })
+        <br />
+        @Html.Label("Yazar Ünvanı")
+        @Html.TextBoxFor(x => x.WriterTittle, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.WriterTittle, "", new { @style = "color:red" })
+        <br />
+        @Html.Label("Yazar Hakkında")
+        @Html.TextBoxFor(x => x.WriterAbout, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.WriterAbout, "", new { @style = "color:red" })
+        <br />
 
-    <br /> 
-    <button class="btn btn-info">Yazarı Ekle</button>
+        <button class="btn btn-info">Yazarı Ekle</button>
 
 
-</div>
+    </div>
 }
 

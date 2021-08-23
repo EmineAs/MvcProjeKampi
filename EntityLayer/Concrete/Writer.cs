@@ -11,7 +11,7 @@ namespace EntityLayer.Concrete
     {
         [Key]
         public int WriterID { get; set; }
-
+        
         [StringLength(50)]
         public string WriterName { get; set; }
 
@@ -29,6 +29,9 @@ namespace EntityLayer.Concrete
 
         [StringLength(200)]
         public string WritePassWord { get; set; }
+
+        [StringLength(50)]
+        public string WriterTittle { get; set; }
 
         public ICollection<Heading> Headings { get; set; }
 
