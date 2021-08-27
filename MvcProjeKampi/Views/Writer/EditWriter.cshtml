@@ -33,7 +33,7 @@
     @Html.ValidationMessageFor(x => x.WriterImage, "", new { @style = "color:red" })
     <br />
     @Html.Label("Yazar Ünvanı")
-    @Html.TextBoxFor(x => x.WriterTittle, new { @class = "form-control", @Value = "/AdminLTE-3.0.4/dist/img/2.png" })
+    @Html.TextBoxFor(x => x.WriterTittle)
     @Html.ValidationMessageFor(x => x.WriterTittle)
     <br />
     @Html.Label("Yazar Hakkında")
