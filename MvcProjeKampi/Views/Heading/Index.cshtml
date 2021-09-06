@@ -57,7 +57,7 @@
                         {
                             if (item.Category.CategoryName == "Tiyatro")
                             {
-                                color= "badge badge-warning";
+                                color = "badge badge-warning";
                             }
                             if (item.Category.CategoryName == "Spor")
                             {
@@ -95,7 +95,7 @@
                                     <span class="@color">@item.Category.CategoryName</span>
                                 </td>
                                 <td class="project-actions text-right">
-                                    <a class="btn btn-primary btn-sm" href="#">
+                                    <a class="btn btn-primary btn-sm" href="/Content/ContentByHeading/@item.HeadingID">
                                         <i class="fas fa-folder">
                                         </i>
                                         Yazılar
@@ -120,6 +120,11 @@
         </div>
         <!-- /.card -->
     </section>
+
+    <a href="/Heading/AddHeading/" class="btn btn-primary">Yeni Başlık Girişi</a>
+
+
+
     <!-- /.content -->
     @*<h2>Index</h2>
         <br />
