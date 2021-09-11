@@ -5,14 +5,14 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
+<!DOCTYPE html>
+<html>
 <body class="hold-transition sidebar-mini">
     <!-- Site wrapper -->
     <div class="wrapper">
         <section class="content">
             <div class="container-fluid">
-                <div>
-                    <h2>Başlık İşlemleri</h2>
-                </div>
+
                 <!-- Timelime example  -->
                 <div class="row">
                     <div class="col-md-12">
@@ -21,6 +21,7 @@
                             <!-- timeline time label -->
                             @foreach (var item in Model)
                             {
+
                                 <div class="time-label">
                                     <span class="bg-success">@(((DateTime)item.ContentDate).ToString("dd-MMM-yyyy"))</span>
                                 </div>
@@ -29,7 +30,7 @@
                                 <div>
                                     <i class="fas fa-comment bg-yellow"></i>
                                     <div class="timeline-item">
-                                        <h3 class="timeline-header"><a href="#">@item.Writer.WriterName @item.Writer.WriterSurName</a> </h3>
+                                        <h3 class="timeline-header"><a href="#">@item.Writer.WriterName @item.Writer.WriterSurName</a></h3>
                                         <div class="timeline-body">
                                             @item.ContentValue
                                         </div>
@@ -43,8 +44,10 @@
                 </div>
             </div>
             <!-- /.timeline -->
+            
         </section>
         <!-- /.content -->
     </div>
     <!-- ./wrapper -->
-
+</body>
+</html>

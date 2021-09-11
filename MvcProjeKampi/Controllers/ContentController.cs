@@ -18,11 +18,11 @@ namespace MvcProjeKampi.Controllers
         }
         public ActionResult ContentByHeading(int id)
         {
-            //var contentvalues = cm.GetListByHeadingID(id);
-            //var headerName=cm.
+            var contentvalues = cm.GetListByHeadingID(id);
+            //var headerName = cm.
             //ViewBag.headerName = headerName;
-            //return View(contentvalues);
-            return View();
+            return View(contentvalues);
+            //return View();
 
         }
     }
