@@ -62,12 +62,12 @@ namespace MvcProjeKampi.Controllers
                                                       Text = x.CategoryName,
                                                       Value = x.CategoryID.ToString()
                                                   }).ToList();
-           
+
             ViewBag.vlc = valuecategory;
 
             var headingvalue = headingManager.GetByID(id);
             return View(headingvalue);
-            
+
         }
 
         [HttpPost]
@@ -80,6 +80,18 @@ namespace MvcProjeKampi.Controllers
         public ActionResult DeleteHeading(int id)
         {
             var headingvalue = headingManager.GetByID(id);
+            //switch(headingvalue.HeadingStatus)
+            //{
+            //    case true:
+            //        headingvalue.HeadingStatus = false;
+            //        break;
+            //    case false:
+            //        headingvalue.HeadingStatus = true;
+            //        break;
+            //}
+            headingvalue.HeadingStatus = !headingvalue.HeadingStatus;
+            //headingvalue.HeadingStatus = false;
+
             headingManager.HeadingDelete(headingvalue);
             return RedirectToAction("Index");
 
