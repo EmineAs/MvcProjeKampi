@@ -7,17 +7,17 @@ using EntityLayer.Concrete;
 
 namespace BusinessLayer.Abstract
 {
-    public interface IAboutService
+    public interface ICategoryService
     {
-        List<About> GetList();
+        List<Category> GetList();
 
-        void AboutAddBL(About About);
+        void CategoryAddBL(Category category);
 
-        About GetByID(int id);
+        Category GetByID(int id);
 
-        void AboutDelete(About About);
+        void CategoryDelete(Category category);
 
-        void AboutUpdate(About About);
+        void CategoryUpdate(Category category);
 
     }
 }

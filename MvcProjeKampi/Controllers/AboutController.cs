@@ -1,4 +1,7 @@
-﻿using System;
+﻿using BusinessLayer.Concrete;
+using DataAccessLayer.EntityFramework;
+using EntityLayer.Concrete;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,10 +11,23 @@ namespace MvcProjeKampi.Controllers
 {
     public class AboutController : Controller
     {
-        // GET: About
+        AboutManager aboutmanager = new AboutManager(new EfAboutDal());
+
         public ActionResult Index()
         {
-            return View();
+            var aboutvalues = aboutmanager.GetList();
+            return View(aboutvalues);
+        }
+
+        public ActionResult AddAbout(About p)
+        {
+            aboutmanager.AboutAddBL(p);
+            return RedirectToAction("Index");
+        }
+
+        public PartialViewResult AboutPartial()
+        {
+            return PartialView();
         }
     }
 }

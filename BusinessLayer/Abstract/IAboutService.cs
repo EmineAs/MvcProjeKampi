@@ -7,16 +7,16 @@ using System.Threading.Tasks;
 
 namespace BusinessLayer.Abstract
 {
-    public interface ICategoryService
+    public interface IAboutService
     {
-        List<Category> GetList();
+        List<About> GetList();
 
-        void CategoryAddBL(Category about);
+        void AboutAddBL(About about);
 
-        Category GetByID(int id);
+        About GetByID(int id);
 
-        void CategoryDelete(Category about);
+        void AboutDelete(About about);
 
-        void CategoryUpdate(Category about);
+        void AboutUpdate(About about);
     }
 }
