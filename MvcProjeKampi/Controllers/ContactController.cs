@@ -1,5 +1,6 @@
 ﻿using BusinessLayer.Concrete;
 using BusinessLayer.ValidationRules;
+using DataAccessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,7 @@ namespace MvcProjeKampi.Controllers
     {
         // GET: Contact
         ContactManager contactManager = new ContactManager(new EfContactDal());
+        MessageManager messageManager = new MessageManager(new EfMessageDal());
         ContactValidator cv = new ContactValidator();
         public ActionResult Index()
         {
@@ -27,6 +29,18 @@ namespace MvcProjeKampi.Controllers
         }
         public PartialViewResult ContactPartial()
         {
+            var contactvalues = contactManager.GetList();
+            var countContact = contactvalues.Count();
+            ViewBag.countContact = countContact;
+
+            var inboxvalues = messageManager.GetListInBox();
+            var countInbox = inboxvalues.Count();
+            ViewBag.countInbox = countInbox;
+
+            var sendboxvalues = messageManager.GetListSendBox();
+            var countSendbox = sendboxvalues.Count();
+            ViewBag.countSendbox = countSendbox;
+
             return PartialView();
         }
     }

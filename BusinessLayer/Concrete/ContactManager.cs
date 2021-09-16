@@ -1,5 +1,6 @@
 ﻿using BusinessLayer.Abstract;
 using DataAccessLayer.Abstract;
+using DataAccessLayer.Concrete;
 using EntityLayer.Concrete;
 using System;
 using System.Collections.Generic;
@@ -42,5 +43,7 @@ namespace BusinessLayer.Concrete
         {
             return _contactDal.List();
         }
+
+       
     }
 }
