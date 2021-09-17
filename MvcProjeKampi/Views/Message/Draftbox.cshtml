@@ -1,8 +1,8 @@
 ﻿@using EntityLayer.Concrete
-@model List<Contact>
+@model List<Message>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Draftbox";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
@@ -29,9 +29,10 @@
 
             <!-- /.col -->
             <div class="col-md-9">
+
                 <div class="card card-primary card-outline">
                     <div class="card-header">
-                        <h3 class="card-title">İletişim Mesajları</h3>
+                        <h3 class="card-title">Taslak Mesajlar</h3>
                         <div class="card-tools">
                             <div class="input-group input-group-sm">
                                 <input type="text" class="form-control" placeholder="Mail Kutusunda Ara">
@@ -81,9 +82,9 @@
                                                 </div>
                                             </td>
                                             <td class="mailbox-star"><a href="#"><i class="fas fa-star text-warning"></i></a></td>
-                                            <td class="mailbox-name"><a href="/Contact/GetContactDetail/@item.ContactID">@item.UserName</a></td>
+                                            <td class="mailbox-name"><a href="/Contact/GetContactDetail/@item.MessageID">@item.ReceiverMail</a></td>
                                             <td class="mailbox-subject">
-                                                <b>@item.Subject</b> @item.Message.Substring(0, 30)
+                                                <b>@item.Subject</b> -@item.MessageContent.Substring(0, 30)...
                                             </td>
                                             <td class="mailbox-attachment"></td>
                                             <td class="mailbox-date">5 mins ago</td>

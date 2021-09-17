@@ -30,11 +30,23 @@ namespace BusinessLayer.Concrete
 
         public List<Message> GetListSendBox()
         {
-            return _messageDal.List(x => x.SenderMail == "admin@gmail.com");
+            return _messageDal.List(x => x.SenderMail == "admin@gmail.com"&& x.Draft==false);
+        }
+
+        public List<Message> GetListDraftBox()
+        {
+            return _messageDal.List(x => x.SenderMail == "admin@gmail.com" && x.Draft == true);
         }
 
         public void MessageAddBL(Message message)
         {
+            message.Draft = false;
+            _messageDal.Insert(message);
+        }
+
+        public void MessageAddDraftBL(Message message)
+        {
+            message.Draft = true;
             _messageDal.Insert(message);
         }
 

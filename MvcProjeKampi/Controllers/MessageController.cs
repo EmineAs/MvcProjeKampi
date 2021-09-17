@@ -27,6 +27,12 @@ namespace MvcProjeKampi.Controllers
             return View(messageList);
         }
 
+        public ActionResult Draftbox()
+        {
+            var messageList = messageManager.GetListDraftBox();
+            return View(messageList);
+        }
+
         [HttpGet]
         public ActionResult NewMessage()
         {
