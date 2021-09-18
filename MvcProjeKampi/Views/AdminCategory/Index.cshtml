@@ -2,33 +2,62 @@
 @model List<Category>
 
 @{
-                /**/
+    /**/
 
-                ViewBag.Title = "Index";
-                Layout = "~/Views/Shared/_Adminlayout.cshtml";
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Adminlayout.cshtml";
 }
 
-<br />
+<body class="hold-transition sidebar-mini">
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <!-- Default box -->
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Kategori İşlemleri</h3>
+                <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                        <i class="fas fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="card-body p-0">
+                <table class="table table-bordered">
+                    <tr>
+                        <th>#</th>
+                        <th>Kategori Adı</th>
+                        <th>Sil</th>
+                        <th>Güncelle</th>
+                        <th>Başlıklar</th>
+                    </tr>
 
-<table class="table table-bordered">
-    <tr>
-        <th>#</th>
-        <th>Kategori Adı</th>
-        <th>Sil</th>
-        <th>Güncelle</th>
-        <th>Başlıklar</th>
-    </tr>
+                    @foreach (var item in Model)
+                    {
 
-    @foreach (var item in Model)
-    {
+                        <tr>
+                            <th> @item.CategoryID</th>
+                            <td> @item.CategoryName</td>
+                            <td><a href="/AdminCategory/DeleteCategory/@item.CategoryID" class="btn btn-danger">Sil</a></td>
+                            <td><a href="/AdminCategory/EditCategory/@item.CategoryID" class="btn btn-warning">Güncelle</a></td>
+                            <td><a href="" class="btn btn-primary">Başlıklar</a></td>
+                        </tr>
+                    }
+                </table>
+            </div>
+        </div>
+    </section>
 
-        <tr>
-            <th> @item.CategoryID</th>
-            <td> @item.CategoryName</td>
-            <td><a href="/AdminCategory/DeleteCategory/@item.CategoryID" class="btn btn-danger">Sil</a></td>
-            <td><a href="/AdminCategory/EditCategory/@item.CategoryID" class="btn btn-warning">Güncelle</a></td>
-            <td><a href="" class="btn btn-primary">Başlıklar</a></td>
-        </tr>
-    }
-</table>
-<a href="/AdminCategory/AddCategory" class="btn btn-info">Yeni Kategori</a>
+    <a href="/AdminCategory/AddCategory" class="btn btn-info">Yeni Kategori</a>
+    <script src="~/AdminLTE-3.0.4/plugins/jquery/jquery.min.js"></script>
+

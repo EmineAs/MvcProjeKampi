@@ -3,10 +3,10 @@
 
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    //Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<!DOCTYPE html>
+
 <html>
 <body class="hold-transition sidebar-mini">
 
@@ -16,7 +16,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Mesaj Sayfası</h1>
+                    <h1>İletişim Sayfası</h1>
                 </div>
             </div>
         </div><!-- /.container-fluid -->
@@ -24,9 +24,7 @@
     <!-- Main content -->
     <section class="content">
         <div class="row">
-
             @Html.Action("ContactPartial", "Contact")
-
             <!-- /.col -->
             <div class="col-md-9">
                 <div class="card card-primary card-outline">
@@ -86,7 +84,9 @@
                                                 <b>@item.Subject</b> @item.Message.Substring(0, 30)
                                             </td>
                                             <td class="mailbox-attachment"></td>
-                                            <td class="mailbox-date">5 mins ago</td>
+                                            <td class="mailbox-date">
+                                                @(((DateTime)item.ContactDate).ToString("dd-MMM-yyyy"))
+                                            </td>
                                         </tr>
                                     }
                                 </tbody>

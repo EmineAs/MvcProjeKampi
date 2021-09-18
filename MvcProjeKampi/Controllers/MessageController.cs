@@ -1,7 +1,9 @@
 ﻿using BusinessLayer.Concrete;
+using BusinessLayer.ValidationRules;
 using DataAccessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
+using FluentValidation.Results;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,9 +14,11 @@ namespace MvcProjeKampi.Controllers
 {
     public class MessageController : Controller
     {
-       
+
 
         MessageManager messageManager = new MessageManager(new EfMessageDal());
+        MessageValidator messagevalidator = new MessageValidator();
+
         public ActionResult Inbox()
         {
             var messageList = messageManager.GetListInBox();
@@ -33,6 +37,7 @@ namespace MvcProjeKampi.Controllers
             return View(messageList);
         }
 
+       
         [HttpGet]
         public ActionResult NewMessage()
         {
@@ -40,9 +45,53 @@ namespace MvcProjeKampi.Controllers
         }
 
         [HttpPost]
-        public ActionResult NewMessage(Message p )
+        public ActionResult NewMessage(Message p)
         {
+            ValidationResult results = messagevalidator.Validate(p);
+            
+            if (results.IsValid)
+            {
+                p.SenderMail = "admin@gmail.com";
+                p.MessageDate = DateTime.Now;
+                p.Draft = false;
+                messageManager.MessageAddBL(p);
+                return RedirectToAction("Sendbox");
+
+            }
+            else
+            {
+                foreach (var item in results.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+            }
             return View();
+        }
+
+        public ActionResult GetMessageDetail(int id)
+        {
+            var messagevalue = messageManager.GetByID(id);
+            return View(messagevalue);
+        }
+        public ActionResult AddDraftMessage(Message p)
+        {
+            p.SenderMail = "admin@gmail.com";
+            p.Draft = true;
+            p.MessageDate = DateTime.Now;
+            messageManager.MessageAddDraftBL(p);
+            return RedirectToAction("Inbox");
+
+        }
+
+        public ActionResult AddMessage(Message p)
+        {
+            p.SenderMail = "admin@gmail.com";
+            p.Draft = false;
+            p.MessageDate = DateTime.Now;
+
+            messageManager.MessageAddBL(p);
+            return RedirectToAction("Inbox");
+
         }
     }
 }

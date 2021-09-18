@@ -38,11 +38,11 @@
                     </a>
                 </li>
                 @*<li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="fas fa-filter"></i> Spam
-                        <span class="badge bg-warning float-right">65</span>
-                    </a>
-                </li>*@
+                        <a href="#" class="nav-link">
+                            <i class="fas fa-filter"></i> Spam
+                            <span class="badge bg-warning float-right">65</span>
+                        </a>
+                    </li>*@
                 <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="far fa-trash-alt"></i> Çöp Kutusu
@@ -81,3 +81,18 @@
     </div>
     <!-- /.card -->
 </div>
+<script src="~/AdminLTE-3.0.4/plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="~/AdminLTE-3.0.4/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- AdminLTE App -->
+<script src="~/AdminLTE-3.0.4/dist/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="~/AdminLTE-3.0.4/dist/js/demo.js"></script>
+<!-- Summernote -->
+<script src="~/AdminLTE-3.0.4/plugins/summernote/summernote-bs4.min.js"></script>
+<!-- Page Script -->
+<script>
+        $(function () {
+            //Add text editor
+            $('#compose-textarea').summernote()
+        })</script>

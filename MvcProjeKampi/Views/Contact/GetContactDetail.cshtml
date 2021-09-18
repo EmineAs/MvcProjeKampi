@@ -4,7 +4,6 @@
 @{
 
     ViewBag.Title = "ContactDetail";
-    Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
 <!DOCTYPE html>
@@ -45,7 +44,7 @@
                             <br />
                             <h6>
                                 Mail: @Html.DisplayFor(x => x.UserMail)
-                                <span class="mailbox-read-time float-right">15 Feb. 2015 11:03 PM</span>
+                                <span class="mailbox-read-time float-right">@Html.DisplayFor(x => x.ContactDate)</span>
                             </h6>
                         </div>
                         <!-- /.mailbox-read-info -->
