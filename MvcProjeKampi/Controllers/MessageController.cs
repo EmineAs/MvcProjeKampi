@@ -14,19 +14,31 @@ namespace MvcProjeKampi.Controllers
 {
     public class MessageController : Controller
     {
-
-
         MessageManager messageManager = new MessageManager(new EfMessageDal());
         MessageValidator messagevalidator = new MessageValidator();
 
+        [Authorize]
         public ActionResult Inbox()
         {
             var messageList = messageManager.GetListInBox();
             return View(messageList);
         }
 
+        public ActionResult ReadMessages()
+        {
+            var messageList = messageManager.GetListReadMessages();
+            return View("Inbox",messageList);
+        }
+
+        public ActionResult UnReadMessages()
+        {
+            var messageList = messageManager.GetListUnReadMessages();
+            return View("Inbox", messageList);
+        }
+
         public ActionResult Sendbox()
         {
+            
             var messageList = messageManager.GetListSendBox();
             return View(messageList);
         }
@@ -37,7 +49,7 @@ namespace MvcProjeKampi.Controllers
             return View(messageList);
         }
 
-       
+
         [HttpGet]
         public ActionResult NewMessage()
         {
@@ -45,15 +57,18 @@ namespace MvcProjeKampi.Controllers
         }
 
         [HttpPost]
+        [ValidateInput(false)] //content açılmıyordu ekledim sonra buraya dönecem
+
         public ActionResult NewMessage(Message p)
         {
             ValidationResult results = messagevalidator.Validate(p);
-            
+
             if (results.IsValid)
             {
                 p.SenderMail = "admin@gmail.com";
-                p.MessageDate = DateTime.Now;
-                p.Draft = false;
+                p.MessageDate = DateTime.Parse(DateTime.Now.ToShortDateString());
+                //p.Draft = false;
+                p.Read = false;
                 messageManager.MessageAddBL(p);
                 return RedirectToAction("Sendbox");
 
@@ -71,6 +86,8 @@ namespace MvcProjeKampi.Controllers
         public ActionResult GetMessageDetail(int id)
         {
             var messagevalue = messageManager.GetByID(id);
+            messagevalue.Read = true;
+            messageManager.MessageUpdate(messagevalue);
             return View(messagevalue);
         }
         public ActionResult AddDraftMessage(Message p)
@@ -83,15 +100,6 @@ namespace MvcProjeKampi.Controllers
 
         }
 
-        public ActionResult AddMessage(Message p)
-        {
-            p.SenderMail = "admin@gmail.com";
-            p.Draft = false;
-            p.MessageDate = DateTime.Now;
-
-            messageManager.MessageAddBL(p);
-            return RedirectToAction("Inbox");
-
-        }
+       
     }
 }

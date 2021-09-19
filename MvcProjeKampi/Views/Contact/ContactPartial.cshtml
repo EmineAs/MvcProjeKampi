@@ -1,4 +1,5 @@
-﻿<div class="col-md-3">
+﻿
+<div class="col-md-3">
     <a href="/Message/NewMessage" class="btn btn-primary btn-block mb-3">Yeni Mesaj Oluştur</a>
     <div class="card">
         <div class="card-header">
@@ -11,19 +12,38 @@
             </div>
         </div>
         <div class="card-body p-0">
-            <ul class="nav nav-pills flex-column">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <li class="nav-item active">
                     <a href="/Contact/Index/" class="nav-link">
                         <i class="fas fa-mail-bulk"></i> İletişim
                         <span class="badge bg-primary float-right">@ViewBag.countContact</span>
                     </a>
                 </li>
+
                 <li class="nav-item active">
                     <a href="/Message/Inbox/" class="nav-link">
                         <i class="fas fa-inbox"></i> Gelen Mesajlar
+                        <i class="right fas fa-angle-left"></i>
                         <span class="badge bg-primary float-right">@ViewBag.countInbox</span>
                     </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="~/Message/ReadMessages/" class="nav-link">
+                                <i class="fas fa-inbox"></i>Okunmuş Mesajlar
+                                <span class="badge bg-primary float-right">@ViewBag.countRead</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="~/Message/UnReadMessages/" class="nav-link">
+                                <i class="fas fa-inbox"></i>Okunmamış Mesajlar
+                                <span class="badge bg-primary float-right">@ViewBag.counUnRead</span>
+
+                            </a>
+                        </li>
+                    </ul>
+
                 </li>
+
                 <li class="nav-item">
                     <a href="/Message/Sendbox/" class="nav-link">
                         <i class="far fa-envelope"></i> Gönderilen Mesajlar
@@ -31,18 +51,20 @@
 
                     </a>
                 </li>
+
+
                 <li class="nav-item">
                     <a href="/Message/Draftbox/" class="nav-link">
                         <i class="far fa-file-alt"></i> Taslaklar
                         <span class="badge bg-primary float-right">@ViewBag.countDraftbox</span>
                     </a>
                 </li>
-                @*<li class="nav-item">
-                        <a href="#" class="nav-link">
-                            <i class="fas fa-filter"></i> Spam
-                            <span class="badge bg-warning float-right">65</span>
-                        </a>
-                    </li>*@
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-filter"></i> Spam
+                        <span class="badge bg-warning float-right">65</span>
+                    </a>
+                </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="far fa-trash-alt"></i> Çöp Kutusu
@@ -81,18 +103,7 @@
     </div>
     <!-- /.card -->
 </div>
+<!-- jQuery -->
 <script src="~/AdminLTE-3.0.4/plugins/jquery/jquery.min.js"></script>
-<!-- Bootstrap 4 -->
+<!-- Bootstrap -->
 <script src="~/AdminLTE-3.0.4/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- AdminLTE App -->
-<script src="~/AdminLTE-3.0.4/dist/js/adminlte.min.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="~/AdminLTE-3.0.4/dist/js/demo.js"></script>
-<!-- Summernote -->
-<script src="~/AdminLTE-3.0.4/plugins/summernote/summernote-bs4.min.js"></script>
-<!-- Page Script -->
-<script>
-        $(function () {
-            //Add text editor
-            $('#compose-textarea').summernote()
-        })</script>

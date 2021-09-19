@@ -26,11 +26,13 @@ namespace BusinessLayer.Concrete
         public List<Message> GetListInBox()
         {
             return _messageDal.List(x => x.ReceiverMail == "admin@gmail.com");
+
         }
 
         public List<Message> GetListSendBox()
         {
-            return _messageDal.List(x => x.SenderMail == "admin@gmail.com"&& x.Draft==false);
+
+            return _messageDal.List(x => x.SenderMail == "admin@gmail.com" && x.Draft == false);
         }
 
         public List<Message> GetListDraftBox()
@@ -38,7 +40,6 @@ namespace BusinessLayer.Concrete
             return _messageDal.List(x => x.SenderMail == "admin@gmail.com" && x.Draft == true);
         }
 
-      
         public void MessageAddBL(Message message)
         {
             _messageDal.Insert(message);
@@ -46,7 +47,7 @@ namespace BusinessLayer.Concrete
 
         public void MessageAddDraftBL(Message message)
         {
-           
+
             _messageDal.Insert(message);
         }
 
@@ -57,7 +58,18 @@ namespace BusinessLayer.Concrete
 
         public void MessageUpdate(Message message)
         {
-            throw new NotImplementedException();
+            _messageDal.Update(message);
+        }
+
+        public List<Message> GetListReadMessages()
+        {
+            return _messageDal.List(x => x.ReceiverMail == "admin@gmail.com"&x.Read==true);
+
+        }
+
+        public List<Message> GetListUnReadMessages()
+        {
+            return _messageDal.List(x => x.ReceiverMail == "admin@gmail.com" & x.Read == false);
         }
     }
 }

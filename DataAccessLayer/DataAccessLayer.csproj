@@ -116,6 +116,18 @@
     <Compile Include="Migrations\202109181340070_mig_addimagefile.designer.cs">
       <DependentUpon>202109181340070_mig_addimagefile.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202109181452086_mig_addadmin.cs" />
+    <Compile Include="Migrations\202109181452086_mig_addadmin.designer.cs">
+      <DependentUpon>202109181452086_mig_addadmin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202109181925492_add_readinmessage.cs" />
+    <Compile Include="Migrations\202109181925492_add_readinmessage.designer.cs">
+      <DependentUpon>202109181925492_add_readinmessage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202109182256119_add_readinmessage2.cs" />
+    <Compile Include="Migrations\202109182256119_add_readinmessage2.designer.cs">
+      <DependentUpon>202109182256119_add_readinmessage2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -162,6 +174,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202109181340070_mig_addimagefile.resx">
       <DependentUpon>202109181340070_mig_addimagefile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202109181452086_mig_addadmin.resx">
+      <DependentUpon>202109181452086_mig_addadmin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202109181925492_add_readinmessage.resx">
+      <DependentUpon>202109181925492_add_readinmessage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202109182256119_add_readinmessage2.resx">
+      <DependentUpon>202109182256119_add_readinmessage2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

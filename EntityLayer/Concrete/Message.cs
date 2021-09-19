@@ -22,6 +22,7 @@ namespace EntityLayer.Concrete
         public string Subject { get; set; }
 
         public bool Draft { get; set; }
+        public bool? Read { get; set; }
 
         public string MessageContent { get; set; }
         public DateTime MessageDate { get; set; }

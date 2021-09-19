@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace MvcProjeKampi.Controllers
 {
-    public class GaleryController : Controller
+    public class GalleryController : Controller
     {
         ImageFileManager ImageFileManager = new ImageFileManager(new EfImageFileDal());
         public ActionResult Index()

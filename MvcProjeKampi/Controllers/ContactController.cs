@@ -37,6 +37,14 @@ namespace MvcProjeKampi.Controllers
             var countInbox = inboxvalues.Count();
             ViewBag.countInbox = countInbox;
 
+            var readvalues = messageManager.GetListReadMessages();
+            var countRead = readvalues.Count();
+            ViewBag.countRead = countRead;
+
+            var unreadvalues = messageManager.GetListUnReadMessages();
+            var counUnRead = unreadvalues.Count();
+            ViewBag.counUnRead = counUnRead;
+
             var sendboxvalues = messageManager.GetListSendBox();
             var countSendbox = sendboxvalues.Count();
             ViewBag.countSendbox = countSendbox;
