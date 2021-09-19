@@ -128,6 +128,10 @@
     <Compile Include="Migrations\202109182256119_add_readinmessage2.designer.cs">
       <DependentUpon>202109182256119_add_readinmessage2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202109190622049_add_aboutstatus.cs" />
+    <Compile Include="Migrations\202109190622049_add_aboutstatus.designer.cs">
+      <DependentUpon>202109190622049_add_aboutstatus.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -183,6 +187,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202109182256119_add_readinmessage2.resx">
       <DependentUpon>202109182256119_add_readinmessage2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202109190622049_add_aboutstatus.resx">
+      <DependentUpon>202109190622049_add_aboutstatus.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

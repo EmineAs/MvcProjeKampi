@@ -25,9 +25,41 @@ namespace MvcProjeKampi.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult DeleteAbout(int id, string button)
+        {
+            var aboutvalue = aboutmanager.GetByID(id);
+
+            if (button == "active")
+            {
+                if (aboutvalue.AboutStatus == false)
+                {
+                    aboutvalue.AboutStatus = true;
+                }
+            }
+            else if (button == "passive")
+            {
+                if (aboutvalue.AboutStatus)
+                {
+                    aboutvalue.AboutStatus = false;
+                }
+            }
+
+          
+            aboutmanager.AboutDelete(aboutvalue);
+
+            return View("Index");
+            
+        }
+
         public PartialViewResult AboutPartial()
         {
             return PartialView();
         }
+        public PartialViewResult MessageBoxPartial()
+        {
+            return PartialView();
+        }
+
+
     }
 }

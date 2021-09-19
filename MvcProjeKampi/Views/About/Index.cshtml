@@ -19,13 +19,20 @@
         <tr>
             <td>@item.AboutID</td>
             <td>Başlık</td>
-            <td><a href="#" class="btn btn-warning">Aktif Yap</a></td>
-            <td><a href="#" class="btn btn-danger">Pasif Yap</a></td>
+            <td>
+                @Html.ActionLink("Aktif Yap", "DeleteAbout", "About", new { id = item.AboutID, button = "active" }, new { @class = "btn btn-success" })
+
+            </td>
+            <td>
+                @Html.ActionLink("Pasif Yap", "DeleteAbout", "About", new { id = item.AboutID, button = "passive" }, new { @class = "btn btn-danger" })
+            </td>
         </tr>
     }
 </table>
 
 
 @Html.Action("AboutPartial", "About")
+
+
 
 <script src="~/AdminLTE-3.0.4/plugins/jquery/jquery.min.js"></script>
