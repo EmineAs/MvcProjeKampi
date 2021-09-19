@@ -6,6 +6,10 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
+
+
+@{ string msg = "";}
+
 <h2>Hakkımda Veri Listesi</h2>
 <table class="table table-bordered">
     <tr>
@@ -16,19 +20,29 @@
     </tr>
     @foreach (var item in Model)
     {
+        switch (item.AboutStatus)
+        {
+            case true:
+                msg = "Aktif Durumda";
+                break;
+            case false:
+                msg = "Pasif Durumda";
+                break;
+        }
         <tr>
             <td>@item.AboutID</td>
             <td>Başlık</td>
             <td>
-                @Html.ActionLink("Aktif Yap", "DeleteAbout", "About", new { id = item.AboutID, button = "active" }, new { @class = "btn btn-success" })
+                @Html.ActionLink("Aktif Yap", "DeleteAbout", "About", new { id = item.AboutID, button = "active" }, new { @class = "btn btn-success", @title = @msg })
 
             </td>
             <td>
-                @Html.ActionLink("Pasif Yap", "DeleteAbout", "About", new { id = item.AboutID, button = "passive" }, new { @class = "btn btn-danger" })
+                @Html.ActionLink("Pasif Yap", "DeleteAbout", "About", new { id = item.AboutID, button = "passive" }, new { @class = "btn btn-danger", @title = @msg })
             </td>
         </tr>
     }
 </table>
+
 
 
 @Html.Action("AboutPartial", "About")

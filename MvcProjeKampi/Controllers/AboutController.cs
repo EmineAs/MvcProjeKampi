@@ -15,7 +15,7 @@ namespace MvcProjeKampi.Controllers
 
         public ActionResult Index()
         {
-            var aboutvalues = aboutmanager.GetList();
+            var aboutvalues = aboutmanager.GetActiveList();
             return View(aboutvalues);
         }
 
@@ -35,6 +35,7 @@ namespace MvcProjeKampi.Controllers
                 {
                     aboutvalue.AboutStatus = true;
                 }
+              
             }
             else if (button == "passive")
             {
@@ -47,7 +48,7 @@ namespace MvcProjeKampi.Controllers
           
             aboutmanager.AboutDelete(aboutvalue);
 
-            return View("Index");
+            return RedirectToAction("Index");
             
         }
 
@@ -55,11 +56,8 @@ namespace MvcProjeKampi.Controllers
         {
             return PartialView();
         }
-        public PartialViewResult MessageBoxPartial()
-        {
-            return PartialView();
-        }
 
+       
 
     }
 }

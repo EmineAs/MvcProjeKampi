@@ -33,6 +33,12 @@ namespace BusinessLayer.Concrete
             _aboutDal.Update(about);
         }
 
+        public List<About> GetActiveList()
+        {
+            return _aboutDal.List(x=>x.AboutStatus==true); 
+
+        }
+
         public About GetByID(int id)
         {
             return _aboutDal.Get(x => x.AboutID == id);

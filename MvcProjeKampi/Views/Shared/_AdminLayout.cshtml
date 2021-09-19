@@ -55,7 +55,7 @@ to get the desired effect
                 <!-- Sidebar Menu -->
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                        @if (User.IsInRole ( "B"))
+                        @if (User.IsInRole("B"))
                         {
                             <li class="nav-item">
                                 <a href="~/AdminCategory/Index" class="nav-link ">
@@ -127,7 +127,7 @@ to get the desired effect
                                 </p>
                             </a>
                         </li>
-                       
+
                         <li class="nav-item">
                             <a href="~AdminLTE-3.0.4/pages/calendar.html" class="nav-link">
                                 <i class="nav-icon fas fa-calendar-alt"></i>
@@ -149,6 +149,15 @@ to get the desired effect
                                 <i class="nav-icon far fa-envelope"></i>
                                 <p>
                                     Hata Sayfaları
+                                </p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item has-treeview">
+                            <a href="/Admin/AddAdmin/" class="nav-link">
+                                <i class="nav-icon far fa-envelope"></i>
+                                <p>
+                                    Admin Ekle
                                 </p>
                             </a>
                         </li>

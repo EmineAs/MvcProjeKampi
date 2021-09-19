@@ -23,7 +23,7 @@ namespace MvcProjeKampi.Controllers
         public ActionResult Index(Admin p)
         {
             Context c = new Context();
-            var adminuserinfo = c.Admins.FirstOrDefault(x=>x.AdminUserName==p.AdminUserName && x.AdminPassWord==p.AdminPassWord);
+            var adminuserinfo = c.Admins.FirstOrDefault(x=>x.AdminUserName==p.AdminUserName && x.AdminPassword==p.AdminPassword);
             if (adminuserinfo != null)
             {
                 FormsAuthentication.SetAuthCookie(adminuserinfo.AdminUserName,false);
