@@ -14,7 +14,9 @@ namespace MvcProjeKampi.Controllers
     {
         // GET: Admin
 
+        AdminLoginManager adminLoginManager = new AdminLoginManager(new EfAdminDal());
         AdminManager adminManager = new AdminManager(new EfAdminDal());
+        RoleManager roleManager = new RoleManager(new EfRoleDal());
 
 
         public ActionResult Index()
@@ -25,18 +27,22 @@ namespace MvcProjeKampi.Controllers
         [HttpGet]
         public ActionResult AddAdmin()
         {
+            List<SelectListItem> valueRole = (from x in roleManager.GetRoles()
+                                              select new SelectListItem
+                                              {
+                                                  Text = x.RoleName,
+                                                  Value = x.RoleId.ToString()
+                                              }).ToList();
+            ViewBag.role = valueRole;
             return View();
         }
 
         [HttpPost]
         public ActionResult AddAdmin(Admin p)
         {
-            p.AdminMail = adminManager.GetHash(p.AdminMail);
-            p.AdminPassword = adminManager.GetHash(p.AdminPassword);
-
+            p.AdminPassword = adminLoginManager.GetHash(p.AdminPassword);
             adminManager.AdminAddBL(p);
             return View();
-
         }
     }
 }

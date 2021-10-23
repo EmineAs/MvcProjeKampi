@@ -7,18 +7,11 @@ using System.Threading.Tasks;
 
 namespace BusinessLayer.Abstract
 {
-    public interface IAdminService
+    public interface IAdminLoginService
     {
-        List<Admin> GetList();
-
         Admin GetAdmin(string username, string password);
+        string GetHash(string data);
 
-        void AdminAddBL(Admin admin);
 
-        //string GetSalt(string data);
-
-        void AdminDelete(Admin admin);
-
-        void AdminUpdate(Admin admin);
     }
 }

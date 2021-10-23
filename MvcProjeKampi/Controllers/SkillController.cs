@@ -8,13 +8,14 @@ using System.Web.Mvc;
 
 namespace MvcProjeKampi.Controllers
 {
-    public class GalleryController : Controller
+    public class SkillController : Controller
     {
-        ImageFileManager imageFileManager = new ImageFileManager(new EfImageFileDal());
+        SkillManager skillManager = new SkillManager(new EfSkillDal());
+        // GET: Skill
         public ActionResult Index()
         {
-            var files = imageFileManager.GetList();
-            return View(files);
+            var skillValues = skillManager.GetList(); //? işaretleri boş gelme/boş olma durumuna 
+            return View(skillValues);
         }
     }
 }

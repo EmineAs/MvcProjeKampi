@@ -33,12 +33,23 @@ namespace BusinessLayer.Concrete
             _adminDal.Update(admin);
         }
 
-        public string GetHash(string data)
+        public Admin GetAdmin(string username, string password)
         {
-            
-            byte[] dataarray = ASCIIEncoding.ASCII.GetBytes(data);
-            string hashedname = Convert.ToBase64String(dataarray);
-            return hashedname;
+            return _adminDal.Get(x => x.AdminUserName == username && x.AdminPassword == password);
         }
+
+        
+
+        public List<Admin> GetList()
+        {
+            return _adminDal.List();
+        }
+
+        //public string GetSalt(string data)
+        //{
+        //    byte[] dataarray = Convert.FromBase64String(data);
+        //    string saltedname = ASCIIEncoding.ASCII.GetString(dataarray);
+        //    return saltedname;
+        //}
     }
 }

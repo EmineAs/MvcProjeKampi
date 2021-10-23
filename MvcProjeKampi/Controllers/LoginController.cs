@@ -1,4 +1,6 @@
-﻿using DataAccessLayer.Concrete;
+﻿using BusinessLayer.Concrete;
+using DataAccessLayer.Concrete;
+using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using System;
 using System.Collections.Generic;
@@ -11,6 +13,8 @@ namespace MvcProjeKampi.Controllers
 {
     public class LoginController : Controller
     {
+        AdminLoginManager adminloginManager = new AdminLoginManager(new EfAdminDal());
+
         // GET: Login
         [HttpGet]
         public ActionResult Index()
@@ -19,24 +23,24 @@ namespace MvcProjeKampi.Controllers
         }
 
         [HttpPost]
-
         public ActionResult Index(Admin p)
         {
-            Context c = new Context();
-            var adminuserinfo = c.Admins.FirstOrDefault(x=>x.AdminUserName==p.AdminUserName && x.AdminPassword==p.AdminPassword);
+            string pass = adminloginManager.GetHash(p.AdminPassword);
+            var adminuserinfo = adminloginManager.GetAdmin(p.AdminUserName, pass);
             if (adminuserinfo != null)
             {
-                FormsAuthentication.SetAuthCookie(adminuserinfo.AdminUserName,false);
-                Session["AdminUserName"]=adminuserinfo.AdminUserName;
-                return RedirectToAction("Index", "AdminCategory");
+                FormsAuthentication.SetAuthCookie(adminuserinfo.AdminMail, false);
+                Session["AdminID"] = adminuserinfo.AdminID;
+                Session["AdminUserName"] = adminuserinfo.AdminUserName;
+                Session["AdminMail"] = adminuserinfo.AdminMail;
+                return RedirectToAction("Index", "Heading");
             }
             else
             {
-                return RedirectToAction("Index");
+                return View();
             }
             
-            
-            return View();
+
         }
     }
 }

@@ -23,7 +23,7 @@
     @*@Html.ValidationMessageFor(x => x.AdminPassWord, "", new { @style = "color:red" })*@
     <br />
     @Html.Label("Admin Rolü")
-    @Html.TextBoxFor(x => x.AdminRole, new { @class = "form-control" })
+    @Html.DropDownListFor(x => x.RoleId, (List<SelectListItem>)ViewBag.role, "-- Rol Seçiniz  --", new { @class = "form-control" })
     @*@Html.ValidationMessageFor(x => x.AdminRole, "", new { @style = "color:red" })*@
 
     <br />

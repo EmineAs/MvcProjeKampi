@@ -59,7 +59,9 @@
     <Compile Include="Abstract\IHeadingDal.cs" />
     <Compile Include="Abstract\IMessageDal.cs" />
     <Compile Include="Abstract\IImageFileDal.cs" />
+    <Compile Include="Abstract\IRoleDal.cs" />
     <Compile Include="Abstract\IRepository.cs" />
+    <Compile Include="Abstract\ISkillDal.cs" />
     <Compile Include="Abstract\IWriterDal.cs" />
     <Compile Include="Concrete\Context.cs" />
     <Compile Include="Concrete\Repositories\CategoryRepository.cs" />
@@ -73,6 +75,8 @@
     <Compile Include="EntityFramework\EfHeadingDal.cs" />
     <Compile Include="EntityFramework\EfImageFileDal.cs" />
     <Compile Include="EntityFramework\EfMessageDal.cs" />
+    <Compile Include="EntityFramework\EfRoleDal.cs" />
+    <Compile Include="EntityFramework\EfSkillDal.cs" />
     <Compile Include="EntityFramework\EfWriterDal.cs" />
     <Compile Include="Migrations\202108211737336_mig1.cs" />
     <Compile Include="Migrations\202108211737336_mig1.designer.cs">
@@ -138,6 +142,18 @@
     <Compile Include="Migrations\202109192111105_edit_admin.designer.cs">
       <DependentUpon>202109192111105_edit_admin.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202110181914201_add_role.cs" />
+    <Compile Include="Migrations\202110181914201_add_role.designer.cs">
+      <DependentUpon>202110181914201_add_role.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202110211703553_add-skill.cs" />
+    <Compile Include="Migrations\202110211703553_add-skill.designer.cs">
+      <DependentUpon>202110211703553_add-skill.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202110211906322_edit_skill.cs" />
+    <Compile Include="Migrations\202110211906322_edit_skill.designer.cs">
+      <DependentUpon>202110211906322_edit_skill.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -199,6 +215,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202109192111105_edit_admin.resx">
       <DependentUpon>202109192111105_edit_admin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202110181914201_add_role.resx">
+      <DependentUpon>202110181914201_add_role.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202110211703553_add-skill.resx">
+      <DependentUpon>202110211703553_add-skill.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202110211906322_edit_skill.resx">
+      <DependentUpon>202110211906322_edit_skill.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
