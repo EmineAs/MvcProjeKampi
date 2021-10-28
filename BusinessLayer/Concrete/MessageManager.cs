@@ -25,19 +25,18 @@ namespace BusinessLayer.Concrete
 
         public List<Message> GetListInBox()
         {
-            return _messageDal.List(x => x.ReceiverMail == "admin@gmail.com");
+            return _messageDal.List(x => x.ReceiverMail == "gizem@hotmail.com" && x.MessageStatus == true);
 
         }
 
         public List<Message> GetListSendBox()
         {
-
-            return _messageDal.List(x => x.SenderMail == "admin@gmail.com" && x.Draft == false);
+            return _messageDal.List(x => x.SenderMail == "gizem@hotmail.com" && x.Draft == false && x.MessageStatus == true);
         }
 
         public List<Message> GetListDraftBox()
         {
-            return _messageDal.List(x => x.SenderMail == "admin@gmail.com" && x.Draft == true);
+            return _messageDal.List(x => x.SenderMail == "gizem@hotmail.com" && x.Draft == true && x.MessageStatus == true);
         }
 
         public void MessageAddBL(Message message)
@@ -47,13 +46,13 @@ namespace BusinessLayer.Concrete
 
         public void MessageAddDraftBL(Message message)
         {
-
             _messageDal.Insert(message);
         }
 
         public void MessageDelete(Message message)
         {
-            throw new NotImplementedException();
+            message.MessageStatus = false;
+            _messageDal.Update(message);
         }
 
         public void MessageUpdate(Message message)
@@ -63,13 +62,22 @@ namespace BusinessLayer.Concrete
 
         public List<Message> GetListReadMessages()
         {
-            return _messageDal.List(x => x.ReceiverMail == "admin@gmail.com"&x.Read==true);
-
+            return _messageDal.List(x => x.ReceiverMail == "gizem@hotmail.com" && x.Read == true && x.MessageStatus == true);
         }
 
         public List<Message> GetListUnReadMessages()
         {
-            return _messageDal.List(x => x.ReceiverMail == "admin@gmail.com" & x.Read == false);
+            return _messageDal.List(x => x.ReceiverMail == "gizem@hotmail.com" && x.Read == false && x.MessageStatus == true);
+        }
+
+        public List<Message> GetListTrashBox()
+        {
+            return _messageDal.List(x => (x.ReceiverMail == "gizem@hotmail.com" || x.SenderMail == "gizem@hotmail.com") && x.MessageStatus == false);
+        }
+
+        public void MessageDeleteAll(Message message)
+        {
+            _messageDal.Delete(message);
         }
     }
 }

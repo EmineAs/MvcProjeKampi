@@ -1,30 +1,32 @@
-﻿using System;
+﻿using BusinessLayer.Concrete;
+using DataAccessLayer.EntityFramework;
+using EntityLayer.Concrete;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using BusinessLayer.Concrete;
-using DataAccessLayer.EntityFramework;
-using EntityLayer.Concrete;
 
 namespace MvcProjeKampi.Controllers
 {
-    public class HeadingController : Controller
+    public class WriterPanelController : Controller
     {
-        // GET: Heading
 
         HeadingManager headingManager = new HeadingManager(new EfHeadingDal());
         CategoryManager categoryManager = new CategoryManager(new EfCategoryDal());
-        WriterManager writerManager = new WriterManager(new EfWriterDal());
 
-        public ActionResult Index()
+        public ActionResult WriterProfile()
         {
-            var headingvalues = headingManager.GetList();
-            return View(headingvalues);
+            return View();
         }
 
-        [HttpGet]
-        public ActionResult AddHeading()
+        public ActionResult MyHeading()
+        {
+            var values = headingManager.GetListByWriter();
+            return View(values);
+        }
+
+        public ActionResult NewHeading()
         {
             List<SelectListItem> valuecategory = (from x in categoryManager.GetList()
                                                   select new SelectListItem
@@ -32,25 +34,18 @@ namespace MvcProjeKampi.Controllers
                                                       Text = x.CategoryName,
                                                       Value = x.CategoryID.ToString()
                                                   }).ToList();
-
-            List<SelectListItem> valuewriter = (from x in writerManager.GetList()
-                                                select new SelectListItem
-                                                {
-                                                    Text = x.WriterName + " " + x.WriterSurName,
-                                                    Value = x.WriterID.ToString()
-                                                }).ToList();
-
             ViewBag.vlc = valuecategory;
-            ViewBag.vlw = valuewriter;
             return View();
         }
 
         [HttpPost]
-        public ActionResult AddHeading(Heading p)
+        public ActionResult NewHeading(Heading heading)
         {
-            p.HeadingDate = DateTime.Parse(DateTime.Now.ToShortDateString());
-            headingManager.HeadingAddBL(p);
-            return RedirectToAction("Index");
+            heading.HeadingDate = DateTime.Parse(DateTime.Now.ToShortDateString());
+            heading.WriterID = 4;
+            heading.HeadingStatus = true;
+            headingManager.HeadingAddBL(heading);
+            return RedirectToAction("MyHeading");
         }
 
         [HttpGet]
@@ -62,19 +57,16 @@ namespace MvcProjeKampi.Controllers
                                                       Text = x.CategoryName,
                                                       Value = x.CategoryID.ToString()
                                                   }).ToList();
-
             ViewBag.vlc = valuecategory;
-
             var headingvalue = headingManager.GetByID(id);
             return View(headingvalue);
-
         }
 
         [HttpPost]
-        public ActionResult EditHeading(Heading p)
+        public ActionResult EditHeading(Heading heading)
         {
-            headingManager.HeadingUpdate(p);
-            return RedirectToAction("Index");
+            headingManager.HeadingUpdate(heading);
+            return RedirectToAction("MyHeading");
         }
 
         public ActionResult DeleteHeading(int id)
@@ -82,8 +74,7 @@ namespace MvcProjeKampi.Controllers
             var headingvalue = headingManager.GetByID(id);
             headingvalue.HeadingStatus = !headingvalue.HeadingStatus;
             headingManager.HeadingUpdate(headingvalue);
-            return RedirectToAction("Index");
+            return RedirectToAction("MyHeading");
         }
-
     }
 }

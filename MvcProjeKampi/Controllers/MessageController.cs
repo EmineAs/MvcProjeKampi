@@ -90,6 +90,7 @@ namespace MvcProjeKampi.Controllers
             messageManager.MessageUpdate(messagevalue);
             return View(messagevalue);
         }
+
         public ActionResult AddDraftMessage(Message p)
         {
             p.SenderMail = "admin@gmail.com";

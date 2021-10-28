@@ -14,14 +14,12 @@ namespace BusinessLayer.Abstract
         List<Message> GetListDraftBox();
         List<Message> GetListReadMessages();
         List<Message> GetListUnReadMessages();
-       
-
+        List<Message> GetListTrashBox();
         void MessageAddBL(Message message);
-
         Message GetByID(int id);
-
         void MessageDelete(Message message);
-
+        void MessageDeleteAll(Message message);
         void MessageUpdate(Message message);
     }
+
 }

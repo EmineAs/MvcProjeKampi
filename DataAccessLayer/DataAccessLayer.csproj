@@ -154,6 +154,10 @@
     <Compile Include="Migrations\202110211906322_edit_skill.designer.cs">
       <DependentUpon>202110211906322_edit_skill.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202110281934335_edit_message.cs" />
+    <Compile Include="Migrations\202110281934335_edit_message.designer.cs">
+      <DependentUpon>202110281934335_edit_message.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -224,6 +228,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202110211906322_edit_skill.resx">
       <DependentUpon>202110211906322_edit_skill.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202110281934335_edit_message.resx">
+      <DependentUpon>202110281934335_edit_message.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

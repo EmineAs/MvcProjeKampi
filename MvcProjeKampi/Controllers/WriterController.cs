@@ -33,7 +33,7 @@ namespace MvcProjeKampi.Controllers
             ValidationResult results = writerValidator.Validate(p);
             if (results.IsValid)
             {
-                writerManager.WriterAdd(p);
+                writerManager.WriterAddBL(p);
                 return RedirectToAction("Index");
 
             }

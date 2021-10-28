@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using BusinessLayer.Abstract;
 using DataAccessLayer.Abstract;
+using DataAccessLayer.Concrete.Repositories;
 using EntityLayer.Concrete;
 
 namespace BusinessLayer.Concrete
@@ -18,9 +19,24 @@ namespace BusinessLayer.Concrete
             _writerDal = writerDal;
         }
 
+        public void WriterAddBL( Writer writer)
+        {
+            _writerDal.Insert(writer);
+        }
+
+        public void WriterDelete( Writer writer)
+        {
+            _writerDal.Delete(writer);
+        }
+
+        public void WriterUpdate( Writer writer)
+        {
+            _writerDal.Update(writer);
+        }
+
         public Writer GetByID(int id)
         {
-            return _writerDal.Get(x => x.WriterID== id);
+            return _writerDal.Get(x => x.WriterID == id);
         }
 
         public List<Writer> GetList()
@@ -28,19 +44,14 @@ namespace BusinessLayer.Concrete
             return _writerDal.List();
         }
 
-        public void WriterAdd(Writer writer)
+        public List<Writer> GetListActive()
         {
-            _writerDal.Insert(writer);
+            return _writerDal.List(x => x.WriterStatus == true);
         }
 
-        public void WriterDelete(Writer writer)
+        public List<Writer> GetListPassive()
         {
-            _writerDal.Delete(writer);
-        }
-
-        public void WriterUpdate(Writer writer)
-        {
-            _writerDal.Update(writer);
+            return _writerDal.List(x => x.WriterStatus == false);
         }
     }
 }

@@ -10,6 +10,7 @@ namespace BusinessLayer.Abstract
     public interface IHeadingService
     {
         List<Heading> GetList();
+        List<Heading> GetListByWriter();
 
         void HeadingAddBL(Heading heading);
 
