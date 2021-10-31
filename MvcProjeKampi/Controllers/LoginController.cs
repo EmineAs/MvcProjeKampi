@@ -2,18 +2,23 @@
 using DataAccessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+using MvcProjeKampi.Models;
+
 
 namespace MvcProjeKampi.Controllers
 {
     public class LoginController : Controller
     {
         AdminLoginManager adminloginManager = new AdminLoginManager(new EfAdminDal());
+        WriterLoginManager writerloginManager = new WriterLoginManager(new EfWriterDal());
 
         // GET: Login
         [HttpGet]
@@ -39,8 +44,42 @@ namespace MvcProjeKampi.Controllers
             {
                 return View();
             }
-            
+        }
 
+        [HttpGet]
+        public ActionResult WriterLogIn()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult WriterLogIn(Writer writer)
+        {
+            var writerinfo = writerloginManager.GetWriter(writer.WriterMail, writer.WriterPassWord);
+            var response = Request["g-recaptcha-response"];
+            const string secret = "6Lex8AYdAAAAAJ6kOXmcP8pPYrXhvNXtVnCeWoB9";
+            var client = new WebClient();
+            var reply =
+                client.DownloadString(
+                    string.Format("https://www.google.com/recaptcha/api/siteverify?secret={0}&response={1}", secret, response));
+
+            var captchaResponse = JsonConvert.DeserializeObject<CaptchaResponse>(reply);
+
+
+            if (writerinfo != null && captchaResponse.Success)
+            {
+                FormsAuthentication.SetAuthCookie(writerinfo.WriterName, false);
+                Session["WriterID"] = writerinfo.WriterID;
+                Session["WriterMail"] = writerinfo.WriterMail;
+                Session["WriterName"] = writerinfo.WriterName;
+                Session["WriterSurName"] = writerinfo.WriterSurName;
+                Session["WriterImage"] = writerinfo.WriterImage;
+                return RedirectToAction("MyContent", "WriterPanelContent");
+            }
+            else
+            {
+                return View();
+            }
         }
     }
 }
