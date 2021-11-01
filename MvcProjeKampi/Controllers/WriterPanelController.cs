@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
+using PagedList.Mvc;
 
 namespace MvcProjeKampi.Controllers
 {
@@ -22,7 +24,8 @@ namespace MvcProjeKampi.Controllers
 
         public ActionResult MyHeading()
         {
-            var values = headingManager.GetListByWriter();
+            int id = (int)Session["WriterID"];
+            var values = headingManager.GetListByWriter(id);
             return View(values);
         }
 
@@ -42,7 +45,7 @@ namespace MvcProjeKampi.Controllers
         public ActionResult NewHeading(Heading heading)
         {
             heading.HeadingDate = DateTime.Parse(DateTime.Now.ToShortDateString());
-            heading.WriterID = 4;
+            heading.WriterID = (int)Session["WriterID"];
             heading.HeadingStatus = true;
             headingManager.HeadingAddBL(heading);
             return RedirectToAction("MyHeading");
@@ -76,5 +79,12 @@ namespace MvcProjeKampi.Controllers
             headingManager.HeadingUpdate(headingvalue);
             return RedirectToAction("MyHeading");
         }
+
+        public ActionResult AllHeading(int page=1)
+        {
+            var headinglist = headingManager.GetList().ToPagedList(page,4);
+            return View(headinglist);
+        }
+
     }
 }

@@ -15,6 +15,7 @@ using MvcProjeKampi.Models;
 
 namespace MvcProjeKampi.Controllers
 {
+    [AllowAnonymous]
     public class LoginController : Controller
     {
         AdminLoginManager adminloginManager = new AdminLoginManager(new EfAdminDal());
@@ -64,7 +65,6 @@ namespace MvcProjeKampi.Controllers
                     string.Format("https://www.google.com/recaptcha/api/siteverify?secret={0}&response={1}", secret, response));
 
             var captchaResponse = JsonConvert.DeserializeObject<CaptchaResponse>(reply);
-
 
             if (writerinfo != null && captchaResponse.Success)
             {

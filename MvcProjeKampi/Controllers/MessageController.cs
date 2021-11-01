@@ -10,75 +10,107 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace MvcProjeKampi.Controllers
+namespace SellUrCar.Controllers
 {
     public class MessageController : Controller
     {
         MessageManager messageManager = new MessageManager(new EfMessageDal());
         MessageValidator messagevalidator = new MessageValidator();
 
-        [Authorize]
-        public ActionResult Inbox()
+        public ActionResult DeleteMessage(int id)
         {
-            var messageList = messageManager.GetListInBox();
-            return View(messageList);
+            var messagevalue = messageManager.GetByID(id);
+            messageManager.MessageDelete(messagevalue);
+            return RedirectToAction("Index", "Contact");
         }
 
-        public ActionResult ReadMessages()
+        public ActionResult DeleteMessageAll(int id)
         {
-            var messageList = messageManager.GetListReadMessages();
-            return View("Inbox",messageList);
+            var messagevalue = messageManager.GetByID(id);
+            messageManager.MessageDeleteAll(messagevalue);
+            return RedirectToAction("Index", "Contact");
         }
-
-        public ActionResult UnReadMessages()
-        {
-            var messageList = messageManager.GetListUnReadMessages();
-            return View("Inbox", messageList);
-        }
-
         public ActionResult Sendbox()
         {
-            
-            var messageList = messageManager.GetListSendBox();
+            string mail = (string)Session["AdminMail"];
+            var messageList = messageManager.GetListSendBox(mail);
             return View(messageList);
         }
 
         public ActionResult Draftbox()
         {
-            var messageList = messageManager.GetListDraftBox();
+            string mail = (string)Session["AdminMail"];
+            var messageList = messageManager.GetListDraftBox(mail);
+            return View(messageList);
+        }
+
+        public ActionResult Trashbox()
+        {
+            string mail = (string)Session["AdminMail"];
+            var messageList = messageManager.GetListTrashBox(mail);
             return View(messageList);
         }
 
 
-        [HttpGet]
         public ActionResult NewMessage()
         {
             return View();
         }
 
-        [HttpPost]
-        [ValidateInput(false)] //content açılmıyordu ekledim sonra buraya dönecem
-
-        public ActionResult NewMessage(Message p)
+        [HttpPost, ValidateInput(false)]
+        public ActionResult NewMessage(Message message, string menu)
         {
-            ValidationResult results = messagevalidator.Validate(p);
+            string session = (string)Session["AdminMail"];
 
-            if (results.IsValid)
-            {
-                p.SenderMail = "admin@gmail.com";
-                p.MessageDate = DateTime.Parse(DateTime.Now.ToShortDateString());
-                //p.Draft = false;
-                p.Read = false;
-                messageManager.MessageAddBL(p);
-                return RedirectToAction("Sendbox");
+            ValidationResult results = messagevalidator.Validate(message);
 
-            }
-            else
+            //Yeni Mesaj sayfasındaki buton isimlerine göre kontroller aşagıdaki gibi yapılır
+
+            //Eğer kullanıcı Gönder tuşuna basarsa;
+            if (menu == "send")
             {
-                foreach (var item in results.Errors)
+                if (results.IsValid)
                 {
-                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                    message.SenderMail = session;
+                    message.MessageStatus = true;
+                    message.Read = false;
+                    message.MessageDate = DateTime.Parse(DateTime.Now.ToShortDateString());
+                    messageManager.MessageAddBL(message);
+                    return RedirectToAction("Index", "Contact");
                 }
+                else
+                {
+                    foreach (var item in results.Errors)
+                    {
+                        ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                    }
+                }
+            }
+            //Eğer kullanıcı Taslaklara Kaydet tuşuna basarsa;
+            else if (menu == "draft")
+            {
+                if (results.IsValid)
+                {
+                    message.SenderMail = session;
+                    message.Draft = true;
+                    message.MessageStatus = true;
+                    message.Read = false;
+                    message.MessageDate = DateTime.Parse(DateTime.Now.ToShortDateString());
+                    messageManager.MessageAddBL(message);
+                    return RedirectToAction("Index", "Contact");
+                }
+                else
+                {
+                    foreach (var item in results.Errors)
+                    {
+                        ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                    }
+                }
+            }
+            //Eğer kullanıcı İptal tuşuna basarsa;
+            else if (menu == "cancel")
+            {
+                return RedirectToAction("Index", "Contact");
             }
             return View();
         }
@@ -91,16 +123,5 @@ namespace MvcProjeKampi.Controllers
             return View(messagevalue);
         }
 
-        public ActionResult AddDraftMessage(Message p)
-        {
-            p.SenderMail = "admin@gmail.com";
-            p.Draft = true;
-            p.MessageDate = DateTime.Now;
-            messageManager.MessageAddDraftBL(p);
-            return RedirectToAction("Inbox");
-
-        }
-
-       
     }
 }

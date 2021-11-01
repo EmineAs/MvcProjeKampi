@@ -1,0 +1,99 @@
+﻿@using EntityLayer.Concrete
+@model List<Heading>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <title>MVC Proje Kampı</title>
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="~/AdminLTE-3.0.4/plugins/fontawesome-free/css/all.min.css">
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="~/AdminLTE-3.0.4/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="~/AdminLTE-3.0.4/dist/css/adminlte.min.css">
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+</head>
+
+<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+    <div class="wrapper">
+        <!-- Main Sidebar Container -->
+        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+            <a href="~/Default/Headings/" class="brand-link">
+                <span class="brand-text font-weight-light" style="text-align:center">Panel</span>
+            </a>
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <!-- Sidebar Menu -->
+                <nav class="mt-2">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                        <li class="nav-item has-treeview">
+                            <a href="" class="nav-link">
+                                <p>
+                                    Başlıklar (@Model.Count())
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                @foreach (var item in Model)
+                                {
+                                    <li class="nav-item">
+                                        <a href="/Default/Headings/@item.HeadingID" class="nav-link">
+                                            <p>@item.HeadingName</p>
+                                        </a>
+                                    </li>
+                                }
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+                <!-- /.sidebar-menu -->
+            </div>
+            <!-- /.sidebar -->
+        </aside>
+        <!-- Control Sidebar -->
+        <div class="content-wrapper">
+            @Html.Action("Index","Default")
+            <div class="content">
+
+            </div>
+        </div>
+       
+
+        <!-- ./wrapper -->
+        <!-- REQUIRED SCRIPTS -->
+        <!-- jQuery -->
+        <script src="~/AdminLTE-3.0.4/plugins/jquery/jquery.min.js"></script>
+        <!-- Bootstrap -->
+        <script src="~/AdminLTE-3.0.4/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <!-- overlayScrollbars -->
+        <script src="~/AdminLTE-3.0.4/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+        <!-- AdminLTE App -->
+        <script src="~/AdminLTE-3.0.4/dist/js/adminlte.js"></script>
+
+        <!-- OPTIONAL SCRIPTS -->
+        <script src="~/AdminLTE-3.0.4/dist/js/demo.js"></script>
+
+        <!-- PAGE PLUGINS -->
+        <!-- jQuery Mapael -->
+        <script src="~/AdminLTE-3.0.4/plugins/jquery-mousewheel/jquery.mousewheel.js"></script>
+        <script src="~/AdminLTE-3.0.4/plugins/raphael/raphael.min.js"></script>
+        <script src="~/AdminLTE-3.0.4/plugins/jquery-mapael/jquery.mapael.min.js"></script>
+        <script src="~/AdminLTE-3.0.4/plugins/jquery-mapael/maps/usa_states.min.js"></script>
+        <!-- ChartJS -->
+        <script src="~/AdminLTE-3.0.4/plugins/chart.js/Chart.min.js"></script>
+
+        <!-- PAGE SCRIPTS -->
+        <script src="~/AdminLTE-3.0.4/dist/js/pages/dashboard2.js"></script>
+</body>
+</html>
+
