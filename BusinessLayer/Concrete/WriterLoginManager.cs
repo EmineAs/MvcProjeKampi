@@ -11,16 +11,16 @@ namespace BusinessLayer.Concrete
 {
     public class WriterLoginManager : IWriterLoginService
     {
-        IWriterDal _WriterDal;
+        IWriterDal _writerDal;
 
-        public WriterLoginManager(IWriterDal WriterDal)
+        public WriterLoginManager(IWriterDal writerDal)
         {
-            _WriterDal = WriterDal;
+            _writerDal = writerDal;
         }
 
-        public Writer GetWriter(string Writername, string password)
+        public Writer GetWriter(string writermail, string password)
         {
-            return _WriterDal.Get(x => x.WriterMail == Writername && x.WriterPassWord == password);
+            return _writerDal.Get(x => x.WriterMail == writermail && x.WriterPassWord == password);
         }
     }
 }

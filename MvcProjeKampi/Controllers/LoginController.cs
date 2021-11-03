@@ -57,6 +57,7 @@ namespace MvcProjeKampi.Controllers
         public ActionResult WriterLogIn(Writer writer)
         {
             var writerinfo = writerloginManager.GetWriter(writer.WriterMail, writer.WriterPassWord);
+
             var response = Request["g-recaptcha-response"];
             const string secret = "6Lex8AYdAAAAAJ6kOXmcP8pPYrXhvNXtVnCeWoB9";
             var client = new WebClient();
@@ -81,5 +82,20 @@ namespace MvcProjeKampi.Controllers
                 return View();
             }
         }
+
+        public ActionResult AdminLogOut()
+        {
+            FormsAuthentication.SignOut();
+            Session.Abandon();
+            return RedirectToAction("AdminLogin", "LogIn");
+        }
+
+        public ActionResult WriterLogOut()
+        {
+            FormsAuthentication.SignOut();
+            Session.Abandon();
+            return RedirectToAction("Headings", "Default");
+        }
     }
 }
+

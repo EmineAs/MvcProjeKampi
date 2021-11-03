@@ -19,15 +19,14 @@ namespace EntityLayer.Concrete
         [StringLength(50)]
         public string UserMail { get; set; }
 
-        [StringLength(50)]
-        public string UserPhone { get; set; }
-
         public DateTime ContactDate { get; set; }
 
         [StringLength(50)]
         public string Subject { get; set; }
 
         public string Message { get; set; }
+
+        public bool ContactStatus { get; set; }
 
     }
 }

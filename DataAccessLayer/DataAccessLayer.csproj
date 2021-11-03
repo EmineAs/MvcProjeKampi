@@ -162,6 +162,18 @@
     <Compile Include="Migrations\202110311447378_edit_writer.designer.cs">
       <DependentUpon>202110311447378_edit_writer.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202111031913347_edit_admin1.cs" />
+    <Compile Include="Migrations\202111031913347_edit_admin1.designer.cs">
+      <DependentUpon>202111031913347_edit_admin1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202111032109397_edit_contact.cs" />
+    <Compile Include="Migrations\202111032109397_edit_contact.designer.cs">
+      <DependentUpon>202111032109397_edit_contact.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202111032115295_edit_contact2.cs" />
+    <Compile Include="Migrations\202111032115295_edit_contact2.designer.cs">
+      <DependentUpon>202111032115295_edit_contact2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -238,6 +250,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202110311447378_edit_writer.resx">
       <DependentUpon>202110311447378_edit_writer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202111031913347_edit_admin1.resx">
+      <DependentUpon>202111031913347_edit_admin1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202111032109397_edit_contact.resx">
+      <DependentUpon>202111032109397_edit_contact.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202111032115295_edit_contact2.resx">
+      <DependentUpon>202111032115295_edit_contact2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,36 +1,43 @@
-﻿using System;
+﻿using BusinessLayer.Concrete;
+using DataAccessLayer.EntityFramework;
+using EntityLayer.Concrete;
+using FluentValidation.Results;
+using PagedList;
+using PagedList.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace MvcProjeKampi.Controllers
+namespace SellUrCar.Controllers
 {
+    [AllowAnonymous]
+
     public class HomeController : Controller
     {
-        public ActionResult Index()
+        ContactManager contactManager = new ContactManager(new EfContactDal());
+
+        public ActionResult HomePage()
         {
             return View();
         }
 
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
+        [HttpGet]
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
-
             return View();
         }
 
-        public ActionResult Test()
+        [HttpPost]
+        public ActionResult Contact(Contact p)
         {
 
-            return View();
+            p.ContactDate = DateTime.Parse(DateTime.Now.ToShortDateString());
+            p.ContactStatus = true;
+            contactManager.ContactAddBL(p);
+            return RedirectToAction("HomePage", "Home");
+
         }
     }
 }

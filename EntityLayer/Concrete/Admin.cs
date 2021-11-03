@@ -23,8 +23,6 @@ namespace EntityLayer.Concrete
 
         public virtual Role Role { get; set; }
 
-        public ICollection<Admin> Admins { get; set; }
-
 
     }
 }
