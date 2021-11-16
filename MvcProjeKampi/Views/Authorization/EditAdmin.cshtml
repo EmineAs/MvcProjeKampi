@@ -1,0 +1,35 @@
+﻿@model EntityLayer.Concrete.Admin
+
+@{
+    ViewBag.Title = "EditAdmin";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<br />
+<h2>Admin Düzenleme Ekranı</h2>
+@using (Html.BeginForm("EditAdmin", "Authorization", FormMethod.Post))
+{
+<div class="form-group">
+    @Html.HiddenFor(x => x.AdminID, new { @class = "form-control" })
+    <br />
+    @Html.Label("Admin Adı")
+    @Html.TextBoxFor(x => x.AdminUserName, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.AdminUserName, "", new { @style = "color:red" })
+    <br />
+    @Html.Label("Admin Maili")
+    @Html.TextBoxFor(x => x.AdminMail, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.AdminMail, "", new { @style = "color:red" })
+    <br />
+    @Html.Label("Admin Şifresi")
+    @Html.TextBoxFor(x => x.AdminPassword, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.AdminPassword, "", new { @style = "color:red" })
+    <br />
+    @Html.Label("Admin Rolü")
+    @Html.DropDownListFor(x => x.RoleId, (List<SelectListItem>)ViewBag.role, "-- Rol Seçiniz  --", new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.Role.RoleName, "", new { @style = "color:red" })
+    <br />
+    <button class="btn btn-success">Değişiklikleri Uygula</button>
+</div>
+}
+
+

@@ -1,0 +1,62 @@
+﻿@model EntityLayer.Concrete.Writer
+@{
+    ViewBag.Title = "WriterProfile";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<br />
+<h2>@ViewBag.name</h2>
+
+@using (Html.BeginForm("WriterProfile", "Writer", FormMethod.Post))
+{
+<div class="form-group">
+    @Html.HiddenFor(x => x.WriterID)
+    @Html.HiddenFor(x => x.WriterImage)
+    @Html.HiddenFor(x => x.WriterStatus)
+    @Html.HiddenFor(x => x.WriterPassWord)
+
+    <img src="@Model.WriterImage" width="150" height="120" /><br />
+    <table class="table d-xxl-table-row">
+        <tr>
+            <th width="10%">
+                @Html.Label("Yazar Ünvanı")
+            </th>
+            <td>
+                @Html.EditorFor(x => x.WriterTittle)
+            </td>
+        </tr>
+        <tr>
+            <th width="15%">
+                @Html.Label("Yazar Hakkında")
+            </th>
+            <td>
+                @Html.EditorFor(x => x.WriterAbout)
+            </td>
+        </tr>
+        <tr>
+            <th width="10%">
+                @Html.Label("Yazar Adı")
+            </th>
+            <td>
+                @Html.EditorFor(x => x.WriterName)
+            </td>
+        </tr>
+        <tr>
+            <th width="10%">
+                @Html.Label("Yazar Soyadı")
+            </th>
+            <td>
+                @Html.EditorFor(x => x.WriterSurName)
+            </td>
+        </tr>
+        <tr>
+            <th width="10%">
+                @Html.Label("Yazar Mail")
+            </th>
+            <td>
+                @Html.EditorFor(x => x.WriterMail)
+            </td>
+        </tr>
+    </table>
+</div>
+}

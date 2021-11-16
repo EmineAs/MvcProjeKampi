@@ -28,14 +28,12 @@ namespace MvcProjeKampi.Controllers
         public ActionResult DeleteAbout(int id, string button)
         {
             var aboutvalue = aboutmanager.GetByID(id);
-
             if (button == "active")
             {
                 if (aboutvalue.AboutStatus == false)
                 {
                     aboutvalue.AboutStatus = true;
-                }
-              
+                }              
             }
             else if (button == "passive")
             {
@@ -44,20 +42,13 @@ namespace MvcProjeKampi.Controllers
                     aboutvalue.AboutStatus = false;
                 }
             }
-
-          
             aboutmanager.AboutDelete(aboutvalue);
-
             return RedirectToAction("Index");
-            
         }
 
         public PartialViewResult AboutPartial()
         {
             return PartialView();
         }
-
-       
-
     }
 }

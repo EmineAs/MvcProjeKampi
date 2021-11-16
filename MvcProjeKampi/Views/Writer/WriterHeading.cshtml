@@ -1,11 +1,8 @@
 ﻿@using EntityLayer.Concrete
-@using PagedList
-@using PagedList.Mvc
-@model PagedList.IPagedList<Heading>
-
+@model List<Heading>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "WriterHeading";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
@@ -44,9 +41,7 @@
                             <th style="width: 15%">
                                 Oluşturan Yazar
                             </th>
-                            <th style="width: 10%">
-                                Durum
-                            </th>
+                           
                             <th style="width: 8%" class="text-center">
                                 Kategori
                             </th>
@@ -75,8 +70,8 @@
                             }
                             if (item.Category.CategoryName == "Film")
                             {
-                                color = "badge badge-dark";
-                            }
+                                color = "badge badge-danger";
+                            }                        
                             switch (item.HeadingStatus)
                             {
                                 case true:
@@ -90,53 +85,45 @@
                                     msg = "Aktif Yap";
                                     break;
                             }
-                        <tr>
-                            <td>
-                                <a>
-                                    @item.HeadingName
-                                </a>
-                                <br />
-                                <small>
-                                    @(((DateTime)item.HeadingDate).ToString("dd-MMM-yyyy"))
-                                </small>
-                            </td>
-                            <td> @*<button class="badge badge-"*@
-                                <ul class="list-inline">
-                                    <li class="list-inline-item">
-                                        <img alt="Avatar" class="table-avatar" src="@item.Writer.WriterImage">  @item.Writer.WriterName @item.Writer.WriterSurName
-                                    </li>
-                                </ul>
-                            </td>
-                            <td>
-                                <span class="@statuscolor">@status</span>
-                            </td>
-                            <td class="project-state">
-                                <span class="@color">@item.Category.CategoryName</span>
-                            </td>
-                            <td class="project-actions text-right">
-                                <a class="btn btn-primary btn-sm" href="/Content/ContentByHeading/@item.HeadingID">
-                                    <i class="fas fa-folder">
-                                    </i>
-                                    Yazılar
-                                </a>
-                                <a class="btn btn-danger btn-sm" title="@msg" href="/Heading/DeleteHeading/@item.HeadingID">
-                                    <i class="fas fa-trash">
-                                    </i>
-                                    @msg
-                                </a>
-                            </td>
-                        </tr>
-                            }
-                        </tbody>
+                            <tr>
+                                <td>
+                                    <a>
+                                        @item.HeadingName
+                                    </a>
+                                    <br />
+                                    <small>
+                                        @(((DateTime)item.HeadingDate).ToString("dd-MMM-yyyy"))
+                                    </small>
+                                </td>
+                                <td>
+                                    <ul class="list-inline">
+                                        <li class="list-inline-item">
+                                            <img alt="Avatar" class="table-avatar" src="@item.Writer.WriterImage">  @item.Writer.WriterName @item.Writer.WriterSurName
+                                        </li>
+                                    </ul>
+                                </td>
+                               
+                                <td class="project-state">
+                                    <span class="@color">@item.Category.CategoryName</span>
+                                </td>
+                                <td class="project-actions text-right">
+                                    <a class="btn btn-primary btn-sm" href="/Content/ContentByHeading/@item.HeadingID">
+                                        <i class="fas fa-folder">
+                                        </i>
+                                        Yazılar
+                                    </a>
+                                    <a class="btn btn-danger btn-sm" title="@msg" href="/WriterPanel/DeleteHeading/@item.HeadingID">
+                                        <i class="fas fa-trash">
+                                        </i>
+                                        @msg
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
                 </table>
             </div>
             <!-- /.card-body -->
         </div>
         <!-- /.card -->
     </section>
-
-    @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page }), new PagedListRenderOptions
-    {
-    LiElementClasses = new List<string>
-    { "page-link" }
-    })

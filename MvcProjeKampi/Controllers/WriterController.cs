@@ -15,6 +15,7 @@ namespace MvcProjeKampi.Controllers
     {
         WriterValidator writerValidator = new WriterValidator();
         WriterManager writerManager = new WriterManager(new EfWriterDal());
+        HeadingManager headingManager = new HeadingManager(new EfHeadingDal());
         public ActionResult Index()
         {
             var writerValues = writerManager.GetList();
@@ -72,6 +73,20 @@ namespace MvcProjeKampi.Controllers
                 }
             }
             return View();
+        }
+
+        public ActionResult WriterProfile(int id)
+        {
+            var writerValue = writerManager.GetByID(id);
+            var name = writerValue.WriterName+" "+writerValue.WriterSurName;
+            ViewBag.name = name;
+            return View(writerValue);
+        }
+
+        public ActionResult WriterHeading(int id)
+        {
+            var values = headingManager.GetListByWriter(id);
+            return View(values);
         }
     }
 }

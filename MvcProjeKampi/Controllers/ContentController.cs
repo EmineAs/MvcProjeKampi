@@ -11,6 +11,8 @@ namespace MvcProjeKampi.Controllers
     public class ContentController : Controller
     {
         ContentManager cm = new ContentManager(new EfContentDal());
+        HeadingManager headingManager = new HeadingManager(new EfHeadingDal());
+
         // GET: Content
         public ActionResult Index()
         {
@@ -27,9 +29,15 @@ namespace MvcProjeKampi.Controllers
             return View(values);
         }
 
-        public ActionResult ContentByHeading(int id)
+        public ActionResult ContentByHeading(int id,string p)
         {
             var contentvalues = cm.GetListByHeadingID(id);
+            if (!string.IsNullOrEmpty(p))
+            {
+                contentvalues = cm.GetListByHeadingID(id,p);
+            }
+            var heading = headingManager.GetByID(id);
+            ViewBag.heading = heading.HeadingName;
             return View(contentvalues);
         }
     }

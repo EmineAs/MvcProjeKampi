@@ -36,7 +36,6 @@ namespace MvcProjeKampi.Controllers
             if (results.IsValid)
             {
                 cm.CategoryAddBL(p);
-                return RedirectToAction("Index");
             }
             else
             {
@@ -69,7 +68,10 @@ namespace MvcProjeKampi.Controllers
             cm.CategoryUpdate(p);
             return RedirectToAction("Index");
         }
+
+        public PartialViewResult SweetSuccess()
+        {
+            return PartialView();
+        }
     }
-
-
 }

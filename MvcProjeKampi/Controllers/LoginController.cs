@@ -11,7 +11,8 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using MvcProjeKampi.Models;
-
+using BusinessLayer.ValidationRules;
+using FluentValidation.Results;
 
 namespace MvcProjeKampi.Controllers
 {
@@ -56,6 +57,9 @@ namespace MvcProjeKampi.Controllers
         [HttpPost]
         public ActionResult WriterLogIn(Writer writer)
         {
+            WriterValidator writerValidator = new WriterValidator();
+            ValidationResult results = writerValidator.Validate(writer);
+
             var writerinfo = writerloginManager.GetWriter(writer.WriterMail, writer.WriterPassWord);
 
             var response = Request["g-recaptcha-response"];
@@ -67,18 +71,29 @@ namespace MvcProjeKampi.Controllers
 
             var captchaResponse = JsonConvert.DeserializeObject<CaptchaResponse>(reply);
 
-            if (writerinfo != null && captchaResponse.Success)
+            if (results.IsValid)
             {
-                FormsAuthentication.SetAuthCookie(writerinfo.WriterName, false);
-                Session["WriterID"] = writerinfo.WriterID;
-                Session["WriterMail"] = writerinfo.WriterMail;
-                Session["WriterName"] = writerinfo.WriterName;
-                Session["WriterSurName"] = writerinfo.WriterSurName;
-                Session["WriterImage"] = writerinfo.WriterImage;
-                return RedirectToAction("MyContent", "WriterPanelContent");
+                if (writerinfo != null && captchaResponse.Success)
+                {
+                    FormsAuthentication.SetAuthCookie(writerinfo.WriterName, false);
+                    Session["WriterID"] = writerinfo.WriterID;
+                    Session["WriterMail"] = writerinfo.WriterMail;
+                    Session["WriterName"] = writerinfo.WriterName;
+                    Session["WriterSurName"] = writerinfo.WriterSurName;
+                    Session["WriterImage"] = writerinfo.WriterImage;
+                    return RedirectToAction("MyContent", "WriterPanelContent");
+                }
+                else
+                {
+                    return View();
+                }
             }
             else
             {
+                foreach (var item in results.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
                 return View();
             }
         }
@@ -87,7 +102,7 @@ namespace MvcProjeKampi.Controllers
         {
             FormsAuthentication.SignOut();
             Session.Abandon();
-            return RedirectToAction("AdminLogin", "LogIn");
+            return RedirectToAction("Index", "LogIn");
         }
 
         public ActionResult WriterLogOut()

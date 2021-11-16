@@ -1,6 +1,8 @@
 ﻿using BusinessLayer.Concrete;
+using BusinessLayer.ValidationRules;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
+using FluentValidation.Results;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +19,6 @@ namespace MvcProjeKampi.Controllers
         AdminLoginManager adminLoginManager = new AdminLoginManager(new EfAdminDal());
         AdminManager adminManager = new AdminManager(new EfAdminDal());
         RoleManager roleManager = new RoleManager(new EfRoleDal());
-
 
         public ActionResult Index()
         {
@@ -44,5 +45,6 @@ namespace MvcProjeKampi.Controllers
             adminManager.AdminAddBL(p);
             return View();
         }
+        
     }
 }

@@ -20,18 +20,29 @@
                         <!-- The time line -->
                         <div class="timeline">
                             <!-- timeline time label -->
+                            @using (Html.BeginForm("ContentByHeading", "Content", FormMethod.Post))
+                            {
+                                <div class="text-right">
+                                    <p>
+                                        Aranacak Kelimeyi Girin : @Html.TextBox("p")
+                                        <input type="submit" value="Ara" />
+                                    </p>
+                                </div>
+                            }
+
+                            <div class="text-center">
+                                <h4><span class="bg-success">@ViewBag.heading</span></h4>
+                            </div>
+
                             @foreach (var item in Model)
                             {
-
-                                <div class="time-label">
-                                    <span class="bg-success">@(((DateTime)item.ContentDate).ToString("dd-MMM-yyyy"))</span>
-                                </div>
-                                <!-- /.timeline-label -->
-                                <!-- timeline item -->
                                 <div>
                                     <i class="fas fa-comment bg-yellow"></i>
                                     <div class="timeline-item">
-                                        <h3 class="timeline-header"><a href="#">@item.Writer.WriterName @item.Writer.WriterSurName</a></h3>
+                                        <h3 class="timeline-header">
+                                            <a href="/Writer/WriterProfile/@item.WriterID">@item.Writer.WriterName @item.Writer.WriterSurName</a>
+                                            <div class="text-md-right">@(((DateTime)item.ContentDate).ToString("dd-MMM-yyyy"))</div>
+                                        </h3>
                                         <div class="timeline-body">
                                             @item.ContentValue
                                         </div>
@@ -45,7 +56,7 @@
                 </div>
             </div>
             <!-- /.timeline -->
-            
+
         </section>
         <!-- /.content -->
     </div>

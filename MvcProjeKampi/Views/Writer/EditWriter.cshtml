@@ -9,8 +9,10 @@
 @using (Html.BeginForm("EditWriter", "Writer", FormMethod.Post))
 {
 <div class="form-group">
-    @Html.Label("Yazar ID")
-    @Html.TextBoxFor(x => x.WriterID, new { @class = "form-control" })
+    @Html.HiddenFor(x => x.WriterID)
+    @Html.Label("Yazar Görsel Linki")
+    @Html.TextBoxFor(x => x.WriterImage, new { @class = "form-control", @Value = "/AdminLTE-3.0.4/dist/img/2.png" })
+    @Html.ValidationMessageFor(x => x.WriterImage, "", new { @style = "color:red" })
     <br />
     @Html.Label("Yazar Adı")
     @Html.TextBoxFor(x => x.WriterName, new { @class = "form-control" })
@@ -25,12 +27,8 @@
     @Html.ValidationMessageFor(x => x.WriterMail, "", new { @style = "color:red" })
     <br />
     @Html.Label("Yazar Şifresi")
-    @Html.TextBoxFor(x => x.WritePassWord, new { @class = "form-control" })
-    @Html.ValidationMessageFor(x => x.WritePassWord, "", new { @style = "color:red" })
-    <br />
-    @Html.Label("Yazar Görsel Linki")
-    @Html.TextBoxFor(x => x.WriterImage, new { @class = "form-control", @Value = "/AdminLTE-3.0.4/dist/img/2.png" })
-    @Html.ValidationMessageFor(x => x.WriterImage, "", new { @style = "color:red" })
+    @Html.TextBoxFor(x => x.WriterPassWord, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.WriterPassWord, "", new { @style = "color:red" })
     <br />
     @Html.Label("Yazar Ünvanı")
     @Html.TextBoxFor(x => x.WriterTittle)

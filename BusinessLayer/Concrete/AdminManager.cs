@@ -25,7 +25,7 @@ namespace BusinessLayer.Concrete
 
         public void AdminDelete(Admin admin)
         {
-            _adminDal.Update(admin);
+            _adminDal.Delete(admin);
         }
 
         public void AdminUpdate(Admin admin)
@@ -33,23 +33,22 @@ namespace BusinessLayer.Concrete
             _adminDal.Update(admin);
         }
 
-        public Admin GetAdmin(string username, string password)
+        public Admin GetByID(int id)
         {
-            return _adminDal.Get(x => x.AdminUserName == username && x.AdminPassword == password);
+            return _adminDal.Get(x => x.AdminID == id);
         }
 
-        
+        public string GetHash(string data)
+        {
+
+            byte[] dataarray = ASCIIEncoding.ASCII.GetBytes(data);
+            string hashedname = Convert.ToBase64String(dataarray);
+            return hashedname;
+        }
 
         public List<Admin> GetList()
         {
             return _adminDal.List();
         }
-
-        //public string GetSalt(string data)
-        //{
-        //    byte[] dataarray = Convert.FromBase64String(data);
-        //    string saltedname = ASCIIEncoding.ASCII.GetString(dataarray);
-        //    return saltedname;
-        //}
     }
 }

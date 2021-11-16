@@ -6,6 +6,8 @@ using System.Web.Mvc;
 using BusinessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
+using PagedList;
+using PagedList.Mvc;
 
 namespace MvcProjeKampi.Controllers
 {
@@ -17,64 +19,16 @@ namespace MvcProjeKampi.Controllers
         CategoryManager categoryManager = new CategoryManager(new EfCategoryDal());
         WriterManager writerManager = new WriterManager(new EfWriterDal());
 
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
-            var headingvalues = headingManager.GetList();
+            var headingvalues = headingManager.GetList().ToPagedList(page ?? 1,7);
             return View(headingvalues);
         }
 
-        [HttpGet]
-        public ActionResult AddHeading()
+        public ActionResult HeadingReport()
         {
-            List<SelectListItem> valuecategory = (from x in categoryManager.GetList()
-                                                  select new SelectListItem
-                                                  {
-                                                      Text = x.CategoryName,
-                                                      Value = x.CategoryID.ToString()
-                                                  }).ToList();
-
-            List<SelectListItem> valuewriter = (from x in writerManager.GetList()
-                                                select new SelectListItem
-                                                {
-                                                    Text = x.WriterName + " " + x.WriterSurName,
-                                                    Value = x.WriterID.ToString()
-                                                }).ToList();
-
-            ViewBag.vlc = valuecategory;
-            ViewBag.vlw = valuewriter;
-            return View();
-        }
-
-        [HttpPost]
-        public ActionResult AddHeading(Heading p)
-        {
-            p.HeadingDate = DateTime.Parse(DateTime.Now.ToShortDateString());
-            headingManager.HeadingAddBL(p);
-            return RedirectToAction("Index");
-        }
-
-        [HttpGet]
-        public ActionResult EditHeading(int id)
-        {
-            List<SelectListItem> valuecategory = (from x in categoryManager.GetList()
-                                                  select new SelectListItem
-                                                  {
-                                                      Text = x.CategoryName,
-                                                      Value = x.CategoryID.ToString()
-                                                  }).ToList();
-
-            ViewBag.vlc = valuecategory;
-
-            var headingvalue = headingManager.GetByID(id);
-            return View(headingvalue);
-
-        }
-
-        [HttpPost]
-        public ActionResult EditHeading(Heading p)
-        {
-            headingManager.HeadingUpdate(p);
-            return RedirectToAction("Index");
+            var headingvalues = headingManager.GetList();
+            return View(headingvalues);
         }
 
         public ActionResult DeleteHeading(int id)

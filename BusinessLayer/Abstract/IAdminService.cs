@@ -11,11 +11,11 @@ namespace BusinessLayer.Abstract
     {
         List<Admin> GetList();
 
-        Admin GetAdmin(string username, string password);
+        Admin GetByID(int id);
 
         void AdminAddBL(Admin admin);
 
-        //string GetSalt(string data);
+        string GetHash(string data);
 
         void AdminDelete(Admin admin);
 

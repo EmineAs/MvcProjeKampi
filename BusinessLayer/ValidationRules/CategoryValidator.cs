@@ -18,5 +18,6 @@ namespace BusinessLayer.ValidationRules
             RuleFor(x => x.CategoryName).MaximumLength(20).WithMessage("Lütfen 20 karakterden fazla değer girişi yapmayın.");
 
         }
+
     }
 }

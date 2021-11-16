@@ -1,4 +1,5 @@
 ﻿using BusinessLayer.Concrete;
+using BusinessLayer.ValidationRules;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using System;
@@ -13,6 +14,7 @@ namespace MvcProjeKampi.Controllers
     {
         ContentManager contentManager = new ContentManager(new EfContentDal());
         HeadingManager headingManager = new HeadingManager(new EfHeadingDal());
+
         public ActionResult MyContent()
         {
             int id=(int)Session["WriterID"];
