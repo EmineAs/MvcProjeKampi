@@ -36,12 +36,12 @@ namespace BusinessLayer.Concrete
 
         public Contact GetByID(int id)
         {
-            return _contactDal.Get(x => x.ContactID == id);
+            return _contactDal.Get(x => x.ContactID == id && x.ContactStatus==true);
         }
 
         public List<Contact> GetList()
         {
-            return _contactDal.List();
+            return _contactDal.List(x=>x.ContactStatus == true);
         }
 
        

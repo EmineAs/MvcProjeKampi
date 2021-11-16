@@ -2,7 +2,7 @@
 @model List<Message>
 
 @{
-    ViewBag.Title = "Sendbox";
+    ViewBag.Title = "Trashbox";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 
 }
@@ -17,7 +17,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Gönderilen Mesaj Sayfası</h1>
+                    <h1>Çöp Kutusu Sayfası</h1>
                 </div>
             </div>
         </div><!-- /.container-fluid -->
@@ -25,15 +25,13 @@
     <!-- Main content -->
     <section class="content">
         <div class="row">
-
             @Html.Action("ContactPartial", "Contact")
-
             <!-- /.col -->
             <div class="col-md-9">
 
                 <div class="card card-primary card-outline">
                     <div class="card-header">
-                        <h3 class="card-title">Gönderilen Mesajlar</h3>
+                        <h3 class="card-title">Silinen Mesajlar</h3>
                         <div class="card-tools">
                             <div class="input-group input-group-sm">
                                 <input type="text" class="form-control" placeholder="Mail Kutusunda Ara">
@@ -56,7 +54,7 @@
                                         <tr>
                                             <td>
                                                 <div class="icheck-primary">
-                                                    <a href="/Message/DeleteMessage/@item.MessageID"><button type="button" class="btn btn-default btn-sm"><i class="far fa-trash-alt"></i></button></a>
+                                                    <a href="/Message/DeleteMessageAll/@item.MessageID"><button type="button" class="btn btn-default btn-sm"><i class="far fa-trash-alt"></i></button></a>
                                                 </div>
                                             </td>
                                             <td class="mailbox-star"><a href="#"><i class="fas fa-star text-warning"></i></a></td>

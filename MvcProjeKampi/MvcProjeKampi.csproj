@@ -2689,6 +2689,7 @@
     <Content Include="Views\Authorization\EditAdmin.cshtml" />
     <Content Include="Views\Writer\WriterProfile.cshtml" />
     <Content Include="Views\Writer\WriterHeading.cshtml" />
+    <Content Include="Views\Message\Trashbox.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="AdminLTE-3.0.4\imagefiles\small\" />

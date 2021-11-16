@@ -51,7 +51,6 @@ namespace SellUrCar.Controllers
             return View(messageList);
         }
 
-
         public ActionResult NewMessage()
         {
             return View();

@@ -27,6 +27,7 @@ namespace SellUrCar.Controllers
         public ActionResult DeleteContact(int id)
         {
             var contactvalue = contactManager.GetByID(id);
+            contactvalue.ContactStatus = false;
             contactManager.ContactUpdate(contactvalue);
             return RedirectToAction("Index");
         }

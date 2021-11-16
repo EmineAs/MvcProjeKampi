@@ -3,6 +3,8 @@
 
 @{
     ViewBag.Title = "Draftbox";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+
 }
 
 <!DOCTYPE html>
@@ -44,28 +46,6 @@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body p-0">
-                        <div class="mailbox-controls">
-                            <!-- Check all button -->
-                            <button type="button" class="btn btn-default btn-sm checkbox-toggle">
-                                <i class="far fa-square"></i>
-                            </button>
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-default btn-sm"><i class="far fa-trash-alt"></i></button>
-                                <button type="button" class="btn btn-default btn-sm"><i class="fas fa-reply"></i></button>
-                                <button type="button" class="btn btn-default btn-sm"><i class="fas fa-share"></i></button>
-                            </div>
-                            <!-- /.btn-group -->
-                            <button type="button" class="btn btn-default btn-sm"><i class="fas fa-sync-alt"></i></button>
-                            <div class="float-right">
-                                1-50/200
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-default btn-sm"><i class="fas fa-chevron-left"></i></button>
-                                    <button type="button" class="btn btn-default btn-sm"><i class="fas fa-chevron-right"></i></button>
-                                </div>
-                                <!-- /.btn-group -->
-                            </div>
-                            <!-- /.float-right -->
-                        </div>
                         <div class="table-responsive mailbox-messages">
                             <table class="table table-hover table-striped">
                                 <tbody>
@@ -74,14 +54,25 @@
                                         <tr>
                                             <td>
                                                 <div class="icheck-primary">
-                                                    <input type="checkbox" value="" id="check1">
-                                                    <label for="check1"></label>
+                                                    <a href="/Message/DeleteMessage/@item.MessageID"><button type="button" class="btn btn-default btn-sm"><i class="far fa-trash-alt"></i></button></a>
                                                 </div>
                                             </td>
                                             <td class="mailbox-star"><a href="#"><i class="fas fa-star text-warning"></i></a></td>
                                             <td class="mailbox-name"><a href="/Message/GetMessageDetail/@item.MessageID">@item.ReceiverMail</a></td>
                                             <td class="mailbox-subject">
-                                                <b>@item.Subject</b> -@item.MessageContent.Substring(0, 30)...
+
+                                                @if (item.MessageContent.Length >= 50)
+                                                {
+                                                    <a href="/Message/GetMessageDetail/@item.MessageID">
+                                                        <b>@item.Subject</b>- @Html.Raw(item.MessageContent.Substring(0, 50))
+                                                    </a>
+                                                }
+                                                else if (item.MessageContent.Length < 50)
+                                                {
+                                                    <a href="/Message/GetMessageDetail/@item.MessageID">
+                                                        <b>@item.Subject</b>- @Html.Raw(item.MessageContent)
+                                                    </a>
+                                                }
                                             </td>
                                             <td class="mailbox-attachment"></td>
                                             <td class="mailbox-date">@(((DateTime)item.MessageDate).ToString("dd-MMM-yyyy"))</td>
@@ -92,31 +83,6 @@
                             <!-- /.table -->
                         </div>
                         <!-- /.mail-box-messages -->
-                    </div>
-                    <!-- /.card-body -->
-                    <div class="card-footer p-0">
-                        <div class="mailbox-controls">
-                            <!-- Check all button -->
-                            <button type="button" class="btn btn-default btn-sm checkbox-toggle">
-                                <i class="far fa-square"></i>
-                            </button>
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-default btn-sm"><i class="far fa-trash-alt"></i></button>
-                                <button type="button" class="btn btn-default btn-sm"><i class="fas fa-reply"></i></button>
-                                <button type="button" class="btn btn-default btn-sm"><i class="fas fa-share"></i></button>
-                            </div>
-                            <!-- /.btn-group -->
-                            <button type="button" class="btn btn-default btn-sm"><i class="fas fa-sync-alt"></i></button>
-                            <div class="float-right">
-                                1-50/200
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-default btn-sm"><i class="fas fa-chevron-left"></i></button>
-                                    <button type="button" class="btn btn-default btn-sm"><i class="fas fa-chevron-right"></i></button>
-                                </div>
-                                <!-- /.btn-group -->
-                            </div>
-                            <!-- /.float-right -->
-                        </div>
                     </div>
                 </div>
                 <!-- /.card -->
