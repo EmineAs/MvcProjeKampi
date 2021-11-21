@@ -1,61 +1,125 @@
 ﻿@using EntityLayer.Concrete
-@model List<Message>
+@model Tuple<List<Message>, List<Writer>>
 
-@{ int i = 0, day1 = 0, day2 = 0, day3 = 0;}
+@{ int i = 0, day1 = 0, day2 = 0, day3 = 0;
+    string name = "", img = "", msg = "";}
+
 <li class="nav-item dropdown">
     <a class="nav-link" data-toggle="dropdown" href="#">
         <i class="far fa-comments"></i>
         <span class="badge badge-danger navbar-badge">@ViewBag.countInbox</span>
     </a>
-    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-left">
 
-        @foreach (var item in Model)
+        @foreach (var item in Model.Item1)
         {
+            if (item.MessageContent.Length >= 25)
+            {
+                msg = @item.MessageContent.Substring(0, 25) + "...";
+
+            }
+
+            else if (item.MessageContent.Length < 25)
+            {
+                msg = @item.MessageContent;
+            }
+
+            {
+                day1 = (@DateTime.Now.Day);
+                day2 = @item.MessageDate.Day;
+                day3 = day1 - day2;
+            }
+
+            foreach (var item2 in Model.Item2)
+            {
+                if (item.SenderMail == item2.WriterMail)
+                {
+                    name = item2.WriterName + " " + item2.WriterSurName;
+                    img = item2.WriterImage;
+                }
+
+            }
             if (i >= 3)
             {
                 break;
             }
             else
             {
-                <a href="#" class="dropdown-item">
+                <a href="/WriterPanelMessage/GetMessageDetail/@item.MessageID" class="dropdown-item">
+                    <!-- Message Start -->
                     <div class="media">
-                        <img src="~/AdminLTE-3.0.4/dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
+                        <img src="@img" alt="User Avatar" class="img-size-50 mr-3 img-circle">
                         <div class="media-body">
                             <h3 class="dropdown-item-title">
-                                @item.SenderMail
-                                <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
+                                @name
                             </h3>
-
-                            @if (item.MessageContent.Length >= 50)
-                            {
-                                <a href="/WriterPanelMessage/GetMessageDetail/@item.MessageID">
-
-                                    <p class="text-sm">@Html.Raw(item.MessageContent.Substring(0, 30))...</p>
-                                </a>
-                            }
-                            else if (item.MessageContent.Length < 50)
-                            {
-                                <a href="/WriterPanelMessage/GetMessageDetail/@item.MessageID">
-
-                                    <p class="text-sm">@Html.Raw(item.MessageContent)</p>
-                                </a>
-                            }
-                            @{day1 = (@DateTime.Now.Day);
-                                day2 = @item.MessageDate.Day;
-                                day3 = day1 - day2;
-                            }
-                            <p class="text-sm text-muted">
-                                <i class="far fa-clock mr-1"></i>
-                                @day3 gün
-                            </p>
+                            <p class="text-sm">@msg</p>
+                            <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> @day3 gün</p>
                         </div>
                     </div>
+                    <!-- Message End -->
                 </a>
+                <div class="dropdown-divider"></div>
                 i++;
+
             }
         }
-
         <a href="/WriterPanelMessage/Inbox/" class="dropdown-item dropdown-footer">Tüm Mesajları Gör</a>
     </div>
 </li>
+
+<li class="nav-item dropdown">
+    <a class="nav-link" data-toggle="dropdown" href="#">
+        <i class="far fa-bell"></i>
+        <span class="badge badge-warning navbar-badge">@ViewBag.unread</span>
+    </a>
+    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+        <span class="dropdown-item dropdown-header">@ViewBag.unread Bildiri</span>
+        <div class="dropdown-divider"></div>
+        <a href="/WriterPanelMessage/UnReadMessages/" class="dropdown-item">
+            <i class="fas fa-envelope mr-2"></i> @ViewBag.unread yeni mesaj
+            @*<span class="float-right text-muted text-sm">3 mins</span>*@
+        </a>
+        <div class="dropdown-divider"></div>
+        
+        <a href="/WriterPanelMessage/UnReadMessages/" class="dropdown-item dropdown-footer">Bildirileri Göster</a>
+    </div>
+</li>
+
+<li class="nav-item dropdown">
+    <a class="nav-link" data-toggle="dropdown" href="#">
+        <img src="@ViewBag.img" alt="User Avatar" class="img-size-32 mr-3 img-circle">
+    </a>
+    <div class="dropdown-menu dropdown-menu-left">
+        <a href="/WriterPanel/WriterProfile/" class="dropdown-item">
+            <!-- Message Start -->
+            <div class="media">
+                <div class="media-body">
+                    <h3 class="dropdown-item-title">
+                        <i class="nav-icon fas fa-user"></i>
+                        Profilim
+                    </h3>
+                </div>
+            </div>
+            <!-- Message End -->
+        </a>
+        <div class="dropdown-divider"></div>
+
+        <a href="/LogIn/WriterLogOut/" class="dropdown-item">
+            <!-- Message Start -->
+            <div class="media">
+                <div class="media-body">
+                    <h3 class="dropdown-item-title">
+                        <i class="nav-icon fas fa-door-closed"></i>
+                        Çıkış Yap
+                    </h3>
+                </div>
+            </div>
+            <!-- Message End -->
+        </a>
+        <div class="dropdown-divider"></div>
+
+    </div>
+</li>
+
 

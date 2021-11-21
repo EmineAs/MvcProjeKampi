@@ -46,7 +46,7 @@ to get the desired effect
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
-            <a href="index3.html" class="brand-link">
+            <a href="/WriterPanel/AllHeading/" class="brand-link">
                 <img src="~/AdminLTE-3.0.4/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
                      style="opacity: .8">
                 <span class="brand-text font-weight-light">MVC Yazar Paneli</span>
@@ -91,7 +91,7 @@ to get the desired effect
                         </li>
                         <li class="nav-item has-treeview">
                             <a href="/WriterPanelMessage/Inbox/" class="nav-link">
-                                <i class="nav-icon fas fa-edit"></i>
+                                <i class="nav-icon fas fa-envelope mr-2"></i>
                                 <p>
                                     Mesajlar
                                 </p>
@@ -139,9 +139,10 @@ to get the desired effect
                 <li class="nav-item d-none d-sm-inline-block">
                     <a href="/Home/Contact/" class="nav-link">Contact</a>
                 </li>
+                @Html.Action("Search", "Default")
+
             </ul>
             <ul class="navbar-nav ml-auto">
-                @Html.Action("Search", "Default")
                 @Html.Action("MessagePartial", "Default")
             </ul>
         </nav>

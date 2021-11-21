@@ -17,9 +17,7 @@ namespace MvcProjeKampi.Controllers
         // GET: Default
         public ActionResult Headings()
         {
-
-            var headingvalues = headingManager.GetList();
-            
+            var headingvalues = headingManager.GetList();         
             return View(headingvalues);
         }
 
@@ -37,7 +35,6 @@ namespace MvcProjeKampi.Controllers
                 if (contentlist.Count != 0)
                 {
                     ViewBag.heading = headingvalues.HeadingName+" Başlığına ait içerikler";
-
                 }
                 else
                 {
@@ -50,6 +47,7 @@ namespace MvcProjeKampi.Controllers
             }
             return PartialView(contentlist);
         }
+
         public PartialViewResult Search()
         {
             return PartialView();
@@ -58,12 +56,16 @@ namespace MvcProjeKampi.Controllers
         public PartialViewResult MessagePartial()
         {
             string mail = (string)Session["WriterMail"];
-            var inboxvalues = messageManager.GetListInBox(mail);
-            var countInbox = inboxvalues.Count();
-            ViewBag.countInbox = countInbox;
-
             var messageList = messageManager.GetListInBox(mail);
-            return PartialView(messageList);
+            var writervalue = writerManager.GetList();
+            var countInbox = messageList.Count();
+            var writer = writerManager.GetUserByMail(mail);
+            var writerimage = writer.WriterImage;
+            var messageunread = messageManager.GetListUnReadMessages(mail);
+            ViewBag.unread = messageunread.Count();
+            ViewBag.img = writerimage;
+            ViewBag.countInbox = countInbox;
+            return PartialView(Tuple.Create(messageList, writervalue));
         }
 
         public PartialViewResult WriterProfile(int id)
