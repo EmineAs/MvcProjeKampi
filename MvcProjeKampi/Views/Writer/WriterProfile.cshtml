@@ -1,62 +1,40 @@
 ﻿@model EntityLayer.Concrete.Writer
 @{
     ViewBag.Title = "WriterProfile";
-    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    Layout = "~/Views/Shared/_WriterLayout.cshtml";
 }
 
 <br />
-<h2>@ViewBag.name</h2>
+<h2>Profil</h2>
 
 @using (Html.BeginForm("WriterProfile", "Writer", FormMethod.Post))
 {
 <div class="form-group">
-    @Html.HiddenFor(x => x.WriterID)
-    @Html.HiddenFor(x => x.WriterImage)
-    @Html.HiddenFor(x => x.WriterStatus)
-    @Html.HiddenFor(x => x.WriterPassWord)
+  
+    <div class="col-md-3">
+        <!-- Profile Image -->
+        <div class="card card-primary card-outline">
+            <div class="card-body box-profile">
+                <div class="text-center">
+                    <img class="profile-user-img img-fluid img-circle"
+                         src="@Model.WriterImage"
+                         alt="User profile picture">
+                </div>
 
-    <img src="@Model.WriterImage" width="150" height="120" /><br />
-    <table class="table d-xxl-table-row">
-        <tr>
-            <th width="10%">
-                @Html.Label("Yazar Ünvanı")
-            </th>
-            <td>
-                @Html.EditorFor(x => x.WriterTittle)
-            </td>
-        </tr>
-        <tr>
-            <th width="15%">
-                @Html.Label("Yazar Hakkında")
-            </th>
-            <td>
-                @Html.EditorFor(x => x.WriterAbout)
-            </td>
-        </tr>
-        <tr>
-            <th width="10%">
-                @Html.Label("Yazar Adı")
-            </th>
-            <td>
-                @Html.EditorFor(x => x.WriterName)
-            </td>
-        </tr>
-        <tr>
-            <th width="10%">
-                @Html.Label("Yazar Soyadı")
-            </th>
-            <td>
-                @Html.EditorFor(x => x.WriterSurName)
-            </td>
-        </tr>
-        <tr>
-            <th width="10%">
-                @Html.Label("Yazar Mail")
-            </th>
-            <td>
-                @Html.EditorFor(x => x.WriterMail)
-            </td>
-        </tr>
-    </table>
+                <h3 class="profile-username text-center"> @Html.DisplayFor(x => x.WriterName) @Html.DisplayFor(x => x.WriterSurName)</h3>
+
+                <p class="text-muted text-center">@Html.DisplayFor(x => x.WriterAbout)</p>
+
+                <ul class="list-group list-group-unbordered mb-3">
+                    <li class="list-group-item">
+                        <b>Mail</b> <a class="float-right">@Html.DisplayFor(x => x.WriterMail)</a>
+                    </li>
+                </ul>
+
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+    </div>
 </div>
 }

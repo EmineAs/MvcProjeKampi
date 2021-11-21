@@ -1,0 +1,60 @@
+﻿@model EntityLayer.Concrete.Writer
+
+@using (Html.BeginForm("WriterProfile", "Dfault", FormMethod.Post))
+{
+    <div class="form-group">
+        @Html.HiddenFor(x => x.WriterID)
+        @Html.HiddenFor(x => x.WriterImage)
+        @Html.HiddenFor(x => x.WriterStatus)
+        @Html.HiddenFor(x => x.WriterPassWord)
+
+        <img src="@Model.WriterImage" width="150" height="120" /><br />
+        <table class="table d-xxl-table-row">
+            <tr>
+                <th width="10%">
+                    @Html.Label("Yazar Ünvanı")
+                </th>
+                <td>
+                    @Html.TextBoxFor(x => x.WriterTittle, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.WriterTittle)
+                </td>
+            </tr>
+            <tr>
+                <th width="10%">
+                    @Html.Label("Yazar Hakkında")
+                </th>
+                <td>
+                    @Html.TextBoxFor(x => x.WriterAbout, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.WriterAbout)
+                </td>
+            </tr>
+            <tr>
+                <th width="10%">
+                    @Html.Label("Yazar Adı")
+                </th>
+                <td>
+                    @Html.TextBoxFor(x => x.WriterName, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.WriterName, null, new { @class = "text-danger" })
+                </td>
+            </tr>
+            <tr>
+                <th width="10%">
+                    @Html.Label("Yazar Soyadı")
+                </th>
+                <td>
+                    @Html.TextBoxFor(x => x.WriterSurName, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.WriterSurName, null, new { @class = "text-danger" })
+                </td>
+            </tr>
+            <tr>
+                <th width="10%">
+                    @Html.Label("Yazar Mail")
+                </th>
+                <td>
+                    @Html.TextBoxFor(x => x.WriterMail, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.WriterMail, null, new { @class = "text-danger" })
+                </td>
+            </tr>
+        </table>
+    </div>
+}

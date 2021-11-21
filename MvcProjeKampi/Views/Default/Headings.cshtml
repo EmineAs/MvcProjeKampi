@@ -29,7 +29,7 @@
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <a href="~/Default/Headings/" class="brand-link">
-                <span class="brand-text font-weight-light" style="text-align:center">Panel</span>
+                <span class="brand-text font-weight-light" style="text-align:center">MVC Sözlük</span>
             </a>
             <!-- Sidebar -->
             <div class="sidebar">
@@ -48,7 +48,7 @@
                                 {
                                     <li class="nav-item">
                                         <a href="/Default/Headings/@item.HeadingID" class="nav-link">
-                                            <p>@item.HeadingName</p>
+                                            <p>@item.HeadingName </p>
                                         </a>
                                     </li>
                                 }
@@ -62,38 +62,36 @@
         </aside>
         <!-- Control Sidebar -->
         <div class="content-wrapper">
-            @Html.Action("Index","Default")
             <div class="content">
-
+                @Html.Action("Index", "Default")
             </div>
         </div>
-       
 
-        <!-- ./wrapper -->
-        <!-- REQUIRED SCRIPTS -->
-        <!-- jQuery -->
-        <script src="~/AdminLTE-3.0.4/plugins/jquery/jquery.min.js"></script>
-        <!-- Bootstrap -->
-        <script src="~/AdminLTE-3.0.4/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-        <!-- overlayScrollbars -->
-        <script src="~/AdminLTE-3.0.4/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-        <!-- AdminLTE App -->
-        <script src="~/AdminLTE-3.0.4/dist/js/adminlte.js"></script>
+    </div>
+    <!-- ./wrapper -->
+    <!-- REQUIRED SCRIPTS -->
+    <!-- jQuery -->
+    <script src="~/AdminLTE-3.0.4/plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="~/AdminLTE-3.0.4/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- overlayScrollbars -->
+    <script src="~/AdminLTE-3.0.4/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="~/AdminLTE-3.0.4/dist/js/adminlte.js"></script>
 
-        <!-- OPTIONAL SCRIPTS -->
-        <script src="~/AdminLTE-3.0.4/dist/js/demo.js"></script>
+    <!-- OPTIONAL SCRIPTS -->
+    <script src="~/AdminLTE-3.0.4/dist/js/demo.js"></script>
 
-        <!-- PAGE PLUGINS -->
-        <!-- jQuery Mapael -->
-        <script src="~/AdminLTE-3.0.4/plugins/jquery-mousewheel/jquery.mousewheel.js"></script>
-        <script src="~/AdminLTE-3.0.4/plugins/raphael/raphael.min.js"></script>
-        <script src="~/AdminLTE-3.0.4/plugins/jquery-mapael/jquery.mapael.min.js"></script>
-        <script src="~/AdminLTE-3.0.4/plugins/jquery-mapael/maps/usa_states.min.js"></script>
-        <!-- ChartJS -->
-        <script src="~/AdminLTE-3.0.4/plugins/chart.js/Chart.min.js"></script>
+    <!-- PAGE PLUGINS -->
+    <!-- jQuery Mapael -->
+    <script src="~/AdminLTE-3.0.4/plugins/jquery-mousewheel/jquery.mousewheel.js"></script>
+    <script src="~/AdminLTE-3.0.4/plugins/raphael/raphael.min.js"></script>
+    <script src="~/AdminLTE-3.0.4/plugins/jquery-mapael/jquery.mapael.min.js"></script>
+    <script src="~/AdminLTE-3.0.4/plugins/jquery-mapael/maps/usa_states.min.js"></script>
+    <!-- ChartJS -->
+    <script src="~/AdminLTE-3.0.4/plugins/chart.js/Chart.min.js"></script>
 
-        <!-- PAGE SCRIPTS -->
-        <script src="~/AdminLTE-3.0.4/dist/js/pages/dashboard2.js"></script>
+    <!-- PAGE SCRIPTS -->
+    <script src="~/AdminLTE-3.0.4/dist/js/pages/dashboard2.js"></script>
 </body>
 </html>
-

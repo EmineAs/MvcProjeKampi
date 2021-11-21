@@ -54,6 +54,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstract\IRegisterService.cs" />
     <Compile Include="Abstract\ISkillSerive.cs" />
     <Compile Include="Abstract\IAboutService.cs" />
     <Compile Include="Abstract\IWriterLoginService.cs" />
@@ -67,6 +68,7 @@
     <Compile Include="Abstract\IAdminService.cs" />
     <Compile Include="Abstract\IRoleService.cs" />
     <Compile Include="Abstract\IWriterService.cs" />
+    <Compile Include="Concrete\RegisterManager.cs" />
     <Compile Include="Concrete\SkillManager.cs" />
     <Compile Include="Concrete\AboutManager.cs" />
     <Compile Include="Concrete\AdminLoginManager.cs" />

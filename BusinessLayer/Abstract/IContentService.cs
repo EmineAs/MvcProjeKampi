@@ -14,6 +14,7 @@ namespace BusinessLayer.Abstract
         List<Content> GetListByHeadingID(int id, string p);
         List<Content> GetListByHeadingID(int id);
         List<Content> GetListByWriter(int id);
+        List<Content> GetListByWriter(int id,string p);
         void ContentAddBL(Content content);
         Content GetByID(int id);
         void ContentDelete(Content content);

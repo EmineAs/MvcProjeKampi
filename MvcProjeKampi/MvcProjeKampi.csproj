@@ -152,6 +152,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MessageController.cs" />
+    <Compile Include="Controllers\RegisterController.cs" />
     <Compile Include="Controllers\SkillController.cs" />
     <Compile Include="Controllers\StatisticsController.cs" />
     <Compile Include="Controllers\TestController.cs" />
@@ -2118,6 +2119,7 @@
     <Content Include="AdminLTE-3.0.4\web2\webfonts\fa-solid-900.svg" />
     <Content Include="AdminLTE-3.0.4\web\css\style.css" />
     <Content Include="AdminLTE-3.0.4\web\images\5.jpg" />
+    <Content Include="AdminLTE-3.0.4\web\images\bg.jpg" />
     <Content Include="AdminLTE-3.0.4\web\images\img1.jpg" />
     <Content Include="AdminLTE-3.0.4\web\images\sprite.png" />
     <Content Include="AdminLTE-3.0.4\web\index.html" />
@@ -2673,7 +2675,6 @@
     <Content Include="Views\Login\WriterLogIn.cshtml" />
     <Content Include="Views\WriterPanelMessage\Trashbox.cshtml" />
     <Content Include="Views\Default\Headings.cshtml" />
-    <Content Include="Views\Default\Index.cshtml" />
     <Content Include="Views\WriterPanel\AllHeading.cshtml" />
     <Content Include="Views\WriterPanelContent\ContentByHeading.cshtml" />
     <Content Include="Views\WriterPanelContent\AddContent.cshtml" />
@@ -2690,6 +2691,11 @@
     <Content Include="Views\Writer\WriterProfile.cshtml" />
     <Content Include="Views\Writer\WriterHeading.cshtml" />
     <Content Include="Views\Message\Trashbox.cshtml" />
+    <Content Include="Views\Default\Index.cshtml" />
+    <Content Include="Views\Default\Search.cshtml" />
+    <Content Include="Views\Default\WriterProfile.cshtml" />
+    <Content Include="Views\Register\WriterRegister.cshtml" />
+    <Content Include="Views\Default\MessagePartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="AdminLTE-3.0.4\imagefiles\small\" />

@@ -4,34 +4,58 @@
 <!DOCTYPE html>
 <html>
 <body class="hold-transition sidebar-mini">
+
     <!-- Site wrapper -->
     <div class="wrapper">
         <section class="content">
             <div class="container-fluid">
-
-                <!-- Timelime example  -->
                 <div class="row">
+                    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+                        <!-- Left navbar links -->
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+                            </li>
+                            <li class="nav-item d-none d-sm-inline-block">
+                                <a href="/Default/Headings/" class="nav-link">Home</a>
+                            </li>
+                            <li class="nav-item d-none d-sm-inline-block">
+                                <a href="/Home/Contact/" class="nav-link">Contact</a>
+                            </li>
+                        </ul>
+                        <ul class="navbar-nav ml-auto">
+                                @Html.Action("Search", "Default")
+                            <li class="nav-item d-none d-sm-inline-block">
+                                <a href="/Login/WriterLogIn/" class="nav-link">Giriş Yap</a>
+                            </li>
+                            <li class="nav-item d-none d-sm-inline-block">
+                                <a href="/Home/Contact/" class="nav-link">Kayıt Ol</a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <br />
+                    <br />
                     <div class="col-md-12">
-                        <!-- The time line -->
+                        <div class="text-center">
+                            <h4>
+                                <span class="text-bold"> @ViewBag.heading</span>
+                            </h4>
+                        </div>
+                        <br/>
+
                         <div class="timeline">
-                            <!-- timeline time label -->
                             @foreach (var item in Model)
                             {
-                                <div class="time-label">
-                                    <span class="bg-success">@(((DateTime)item.ContentDate).ToString("dd-MMM-yyyy")) - @item.Writer.WriterName @item.Writer.WriterSurName</span>
-                                </div>
-                                <!-- /.timeline-label -->
-                                <!-- timeline item -->
                                 <div>
                                     <i class="fas fa-comment bg-yellow"></i>
                                     <div class="timeline-item">
-                                        <h3 class="timeline-header"><a href="#">@item.Heading.HeadingName</a></h3>
+                                        <h3 class="timeline-header"><a href="/Default/WriterProfile/@item.WriterID">@item.Writer.WriterName @item.Writer.WriterSurName</a></h3>
+                                        <h3 class="timeline-header">@(((DateTime)item.ContentDate).ToString("dd-MMM-yyyy"))</h3>
                                         <div class="timeline-body">
                                             @item.ContentValue
                                         </div>
                                     </div>
                                 </div>
-                                <!-- END timeline item -->
                             }
                         </div>
                     </div>

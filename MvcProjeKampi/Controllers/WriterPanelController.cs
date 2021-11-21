@@ -109,7 +109,7 @@ namespace MvcProjeKampi.Controllers
 
         public ActionResult AllHeading(int? page)
         {
-            var headinglist = headingManager.GetList().ToPagedList(page ?? 1,4);
+            var headinglist = headingManager.GetList().ToPagedList(page ?? 1,7);
             return View(headinglist);
         }
 

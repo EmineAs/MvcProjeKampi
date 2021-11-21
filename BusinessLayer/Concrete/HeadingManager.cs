@@ -39,6 +39,11 @@ namespace BusinessLayer.Concrete
             _headingDal.Insert(heading);
         }
 
+        public object GetByID(int? id)
+        {
+            throw new NotImplementedException();
+        }
+
         public void HeadingDelete(Heading heading)
         {
             _headingDal.Update(heading);

@@ -39,6 +39,11 @@ namespace BusinessLayer.Concrete
             throw new NotImplementedException();
         }
 
+        public object GetListByHeadingID(int? id)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<Content> GetList(string p)
         {
             return _contentDal.List(x=>x.ContentValue.Contains(p));
@@ -62,6 +67,11 @@ namespace BusinessLayer.Concrete
         public List<Content> GetListByWriter(int id)
         {
             return _contentDal.List(x => x.WriterID == id);
+        }
+
+        public List<Content> GetListByWriter(int id, string p)
+        {
+            return _contentDal.List(x => x.WriterID == id && x.ContentValue.Contains(p));
         }
     }
 }

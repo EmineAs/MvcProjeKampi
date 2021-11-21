@@ -19,22 +19,28 @@
                         <!-- The time line -->
                         <div class="timeline">
                             <!-- timeline time label -->
+                           
+                            <div class="text-center">
+                                <h4>
+                                    <span class="text-bold"> @ViewBag.heading</span>
+                                </h4>
+                            </div>
+                            <br />
                             @foreach (var item in Model)
                             {
-                                <div class="time-label">
-                                    <span class="bg-success">@(((DateTime)item.ContentDate).ToString("dd-MMM-yyyy"))</span>
+                        <div>
+                            <i class="fas fa-comment bg-yellow"></i>
+                            <div class="timeline-item">
+                                <h3 class="timeline-header">
+                                    <a href="/Writer/WriterProfile/@item.WriterID">@item.Writer.WriterName @item.Writer.WriterSurName</a>
+                                </h3>
+                                <h3 class="timeline-header">@(((DateTime)item.ContentDate).ToString("dd-MMM-yyyy"))</h3>
+
+                                <div class="timeline-body">
+                                    @item.ContentValue
                                 </div>
-                                <!-- /.timeline-label -->
-                                <!-- timeline item -->
-                                <div>
-                                    <i class="fas fa-comment bg-yellow"></i>
-                                    <div class="timeline-item">
-                                        <h3 class="timeline-header"><a href="#">@item.Writer.WriterName @item.Writer.WriterSurName</a></h3>
-                                        <div class="timeline-body">
-                                            @item.ContentValue
-                                        </div>
-                                    </div>
-                                </div>
+                            </div>
+                        </div>
                                 <!-- END timeline item -->
                             }
                         </div>

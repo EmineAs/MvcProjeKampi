@@ -71,8 +71,7 @@ namespace MvcProjeKampi.Controllers
 
             var captchaResponse = JsonConvert.DeserializeObject<CaptchaResponse>(reply);
 
-            if (results.IsValid)
-            {
+          
                 if (writerinfo != null && captchaResponse.Success)
                 {
                     FormsAuthentication.SetAuthCookie(writerinfo.WriterName, false);
@@ -87,15 +86,7 @@ namespace MvcProjeKampi.Controllers
                 {
                     return View();
                 }
-            }
-            else
-            {
-                foreach (var item in results.Errors)
-                {
-                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
-                }
-                return View();
-            }
+            
         }
 
         public ActionResult AdminLogOut()

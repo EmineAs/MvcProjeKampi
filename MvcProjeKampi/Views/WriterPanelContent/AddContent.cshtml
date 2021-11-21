@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_WriterLayout.cshtml";
 }
 
-<h1>@TempData["headingname"]</h1>
+<h3>@TempData["headingname"]</h3>
 <br />
 
 @using (Html.BeginForm("AddContent", "WriterPanelContent", FormMethod.Post))
