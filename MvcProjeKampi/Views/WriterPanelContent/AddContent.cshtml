@@ -11,12 +11,17 @@
 
 @using (Html.BeginForm("AddContent", "WriterPanelContent", FormMethod.Post))
 {
-    <div class="form-group">
-        @Html.Label("içeriğinizi yazın")
-        @Html.TextAreaFor(x => x.ContentValue, 4, 30, new { @class = "form-control" })
-        @Html.ValidationMessageFor(x => x.ContentValue, "", new { @style = "color:red" })
-        <br />
-        <button class="btn btn-info">Kaydet</button>
-    </div>
+<div class="card-footer">
+    <form action="#" method="post">
+        <img class="img-fluid img-circle img-sm" src="@Session["WriterImage"] " alt="Alt Text">
+        <!-- .img-push is used to add margin to elements next to floating images -->
+        <div class="img-push">
+            @Html.TextAreaFor(x => x.ContentValue, 4, 30, new { @class = "form-control", @placeholder = "İçerik giriniz" })
+            @Html.ValidationMessageFor(x => x.ContentValue, "", new { @style = "color:red" })
+            <br />
+        </div>
+    </form>
+    <button class="btn btn-info">Kaydet</button>
+</div>
 }
 

@@ -16,7 +16,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <!-- The time line -->
-                        <div class="timeline">
+                        <div>
                             <!-- timeline time label -->
 
                             <div class="text-center">
@@ -27,22 +27,22 @@
                             <br />
                             @foreach (var item in Model)
                             {
-                                <div>
-                                    <i class="fas fa-comment bg-yellow"></i>
-                                    <div class="timeline-item">
-                                        <h3 class="timeline-header">
-                                            <a href="/Writer/WriterProfile/@item.WriterID">@item.Writer.WriterName @item.Writer.WriterSurName</a>
-                                        </h3>
-                                        <h3 class="timeline-header">@(((DateTime)item.ContentDate).ToString("dd-MMM-yyyy"))</h3>
+                                <div class="card-footer card-comments">
+                                    <div class="card-comment">
+                                        <!-- User image -->
+                                        <img class="img-circle img-sm" src="@item.Writer.WriterImage" alt="User Image">
 
-                                        <div class="timeline-body">
+                                        <div class="comment-text">
+                                            <span class="username">
+                                                @item.Writer.WriterName @item.Writer.WriterSurName
+                                                <span class="text-muted float-right">@(((DateTime)item.ContentDate).ToString("dd-MMM-yyyy"))</span>
+                                            </span><!-- /.username -->
                                             @item.ContentValue
                                         </div>
+                                        <!-- /.comment-text -->
                                     </div>
                                 </div>
-                                <!-- END timeline item -->
                             }
-                            @*@Html.Action("AddContentPartial", "WriterPanelContent")*@
                         </div>
                     </div>
                     <!-- /.col -->
