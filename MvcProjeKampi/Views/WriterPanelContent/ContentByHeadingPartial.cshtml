@@ -2,8 +2,7 @@
 @model List<Content>
 
 @{
-    ViewBag.Title = "ContentByHeading";
-    Layout = "~/Views/Shared/_WriterLayout.cshtml";
+    ViewBag.Title = "ContentByHeadingPartial";
 }
 
 <!DOCTYPE html>
@@ -43,7 +42,7 @@
                                 </div>
                                 <!-- END timeline item -->
                             }
-
+                            @*@Html.Action("AddContentPartial", "WriterPanelContent")*@
                         </div>
                     </div>
                     <!-- /.col -->

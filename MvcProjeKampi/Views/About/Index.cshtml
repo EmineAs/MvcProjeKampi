@@ -13,7 +13,6 @@
 <h2>Hakkımda Veri Listesi</h2>
 <table class="table table-bordered">
     <tr>
-        <th>ID</th>
         <th>Hakkımda Başlığı</th>
         <th>Aktif Yap</th>
         <th>Pasif Yap</th>
@@ -30,7 +29,6 @@
                 break;
         }
         <tr>
-            <td>@item.AboutID</td>
             <td>Başlık</td>
             <td>
                 @Html.ActionLink("Aktif Yap", "DeleteAbout", "About", new { id = item.AboutID, button = "active" }, new { @class = "btn btn-success", @title = @msg })

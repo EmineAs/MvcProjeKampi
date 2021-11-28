@@ -2696,6 +2696,8 @@
     <Content Include="Views\Default\WriterProfile.cshtml" />
     <Content Include="Views\Register\WriterRegister.cshtml" />
     <Content Include="Views\Default\MessagePartial.cshtml" />
+    <Content Include="Views\AdminCategory\HeadingByCategory.cshtml" />
+    <Content Include="Views\WriterPanelContent\ContentByHeadingPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="AdminLTE-3.0.4\imagefiles\small\" />

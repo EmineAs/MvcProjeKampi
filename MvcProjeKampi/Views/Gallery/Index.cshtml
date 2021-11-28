@@ -1,8 +1,11 @@
 ﻿@using EntityLayer.Concrete
 @model List<ImageFile>
+
+
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Gallery";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
+
 }
 
 <!DOCTYPE html>
@@ -10,7 +13,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>AdminLTE 3 | Gallery</title>
+    <title>MVC Sözlük Galerisi</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Font Awesome -->
@@ -23,48 +26,36 @@
     <link rel="stylesheet" href="~/AdminLTE-3.0.4/dist/css/adminlte.min.css">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+
 </head>
 <body class="hold-transition sidebar-mini">
 
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1>Sözlük Galerisi</h1>
-                </div>
-                <div class="col-sm-6">
-                    <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Gallery</li>
-                    </ol>
-                </div>
-            </div>
-        </div><!-- /.container-fluid -->
-    </section>
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-12">
+                <div class="col-10">
                     <div class="card card-primary">
                         <div class="card-header">
                             <div class="card-title">
-                                Ekko Lightbox
+                                Sözlük Galerisi
                             </div>
                         </div>
+                       
                         <div class="card-body">
                             <div class="row">
                                 @foreach (var item in Model)
                                 {
                                     <div class="col-sm-2">
                                         <a href="@item.ImagePath" data-toggle="lightbox" data-title="@item.ImageName" data-gallery="gallery">
-                                            <img src="@item.ImagePath" class="img-fluid mb-2" alt="white sample" />
+                                            <img src="@item.ImagePath" class="img-fluid mb-2" alt="@item.ImageName" style="height: 200px; width: 400px;" />
                                         </a>
                                     </div>
                                 }
-                                </div>
+
+                            </div>
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -72,9 +63,9 @@
     </section>
 
     <!-- jQuery -->
-    <script src="~/AdminLTE-3.0.4/plugins/jquery/jquery.min.js"></script>
+    @*<script src="~/AdminLTE-3.0.4/plugins/jquery/jquery.min.js"></script>*@
     <!-- Bootstrap -->
-    <script src="~/AdminLTE-3.0.4/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    @*<script src="~/AdminLTE-3.0.4/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>*@
     <!-- jQuery UI -->
     <script src="~/AdminLTE-3.0.4/plugins/jquery-ui/jquery-ui.min.js"></script>
     <!-- Ekko Lightbox -->
@@ -85,6 +76,9 @@
     <script src="~/AdminLTE-3.0.4/dist/js/demo.js"></script>
     <!-- Filterizr-->
     <script src="~/AdminLTE-3.0.4/plugins/filterizr/jquery.filterizr.min.js"></script>
+
+    <script src="~/AdminLTE-3.0.4/dist/js/adminlte.min.js"></script>
+
     <!-- Page specific script -->
     <script>
 

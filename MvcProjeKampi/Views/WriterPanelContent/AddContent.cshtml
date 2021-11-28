@@ -5,14 +5,15 @@
     Layout = "~/Views/Shared/_WriterLayout.cshtml";
 }
 
-<h3>@TempData["headingname"]</h3>
 <br />
+
+@Html.Action("ContentByHeadingPartial", "WriterPanelContent")
 
 @using (Html.BeginForm("AddContent", "WriterPanelContent", FormMethod.Post))
 {
     <div class="form-group">
         @Html.Label("içeriğinizi yazın")
-        @Html.TextAreaFor(x => x.ContentValue,4,30, new { @class = "form-control" })
+        @Html.TextAreaFor(x => x.ContentValue, 4, 30, new { @class = "form-control" })
         @Html.ValidationMessageFor(x => x.ContentValue, "", new { @style = "color:red" })
         <br />
         <button class="btn btn-info">Kaydet</button>

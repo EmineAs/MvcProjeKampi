@@ -1,7 +1,7 @@
 ﻿@model EntityLayer.Concrete.Writer
 @{
     ViewBag.Title = "WriterProfile";
-    Layout = "~/Views/Shared/_WriterLayout.cshtml";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
 <br />
@@ -9,32 +9,32 @@
 
 @using (Html.BeginForm("WriterProfile", "Writer", FormMethod.Post))
 {
-<div class="form-group">
-  
-    <div class="col-md-3">
-        <!-- Profile Image -->
-        <div class="card card-primary card-outline">
-            <div class="card-body box-profile">
-                <div class="text-center">
-                    <img class="profile-user-img img-fluid img-circle"
-                         src="@Model.WriterImage"
-                         alt="User profile picture">
+    <div class="form-group">
+
+        <div class="col-md-3">
+            <!-- Profile Image -->
+            <div class="card card-primary card-outline">
+                <div class="card-body box-profile">
+                    <div class="text-center">
+                        <img class="profile-user-img img-fluid img-circle"
+                             src="@Model.WriterImage"
+                             alt="User profile picture">
+                    </div>
+
+                    <h3 class="profile-username text-center"> @Html.DisplayFor(x => x.WriterName) @Html.DisplayFor(x => x.WriterSurName)</h3>
+
+                    <p class="text-muted text-center">@Html.DisplayFor(x => x.WriterAbout)</p>
+
+                    <ul class="list-group list-group-unbordered mb-3">
+                        <li class="list-group-item">
+                            <b>Mail</b> <a class="float-right">@Html.DisplayFor(x => x.WriterMail)</a>
+                        </li>
+                    </ul>
+
                 </div>
-
-                <h3 class="profile-username text-center"> @Html.DisplayFor(x => x.WriterName) @Html.DisplayFor(x => x.WriterSurName)</h3>
-
-                <p class="text-muted text-center">@Html.DisplayFor(x => x.WriterAbout)</p>
-
-                <ul class="list-group list-group-unbordered mb-3">
-                    <li class="list-group-item">
-                        <b>Mail</b> <a class="float-right">@Html.DisplayFor(x => x.WriterMail)</a>
-                    </li>
-                </ul>
-
+                <!-- /.card-body -->
             </div>
-            <!-- /.card-body -->
+            <!-- /.card -->
         </div>
-        <!-- /.card -->
     </div>
-</div>
 }

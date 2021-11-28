@@ -42,6 +42,7 @@ namespace MvcProjeKampi.Controllers
         public ActionResult AddAdmin(Admin p)
         {
             p.AdminPassword = adminLoginManager.GetHash(p.AdminPassword);
+            p.AdminStatus = true;
             adminManager.AdminAddBL(p);
             return View();
         }

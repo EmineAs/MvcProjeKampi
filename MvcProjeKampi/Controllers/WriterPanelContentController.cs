@@ -30,7 +30,6 @@ namespace MvcProjeKampi.Controllers
         public ActionResult AddContent(int id)
         {
             var headingvalues = headingManager.GetByID(id);
-            TempData["headingname"] = headingvalues.HeadingName;
             return View();
         }
 
@@ -41,8 +40,23 @@ namespace MvcProjeKampi.Controllers
             content.WriterID= (int)Session["WriterID"];
             content.ContentStatus = true;
             content.HeadingID = id;
-            contentManager.ContentAddBL(content);
+            if(content.ContentValue!=null)
+            {
+                contentManager.ContentAddBL(content);
+            }
             return View();
+        }
+
+        public PartialViewResult ContentByHeadingPartial(int id, string p)
+        {
+            var contentvalues = contentManager.GetListByHeadingID(id);
+            if (!string.IsNullOrEmpty(p))
+            {
+                contentvalues = contentManager.GetListByHeadingID(id, p);
+            }
+            var heading = headingManager.GetByID(id);
+            ViewBag.heading = heading.HeadingName;
+            return PartialView(contentvalues);
         }
 
         public ActionResult ContentByHeading(int id, string p)
@@ -55,6 +69,11 @@ namespace MvcProjeKampi.Controllers
             var heading = headingManager.GetByID(id);
             ViewBag.heading = heading.HeadingName;
             return View(contentvalues);
+        }
+
+        public PartialViewResult Search()
+        {
+            return PartialView();
         }
     }
 }

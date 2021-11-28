@@ -21,6 +21,7 @@ namespace MvcProjeKampi.Controllers
 
         public ActionResult AddAbout(About p)
         {
+            p.AboutStatus = true;
             aboutmanager.AboutAddBL(p);
             return RedirectToAction("Index");
         }

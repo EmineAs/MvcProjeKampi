@@ -17,7 +17,6 @@ namespace BusinessLayer.ValidationRules
         {
             RuleFor(x => x.WriterName).NotEmpty().WithMessage("Yazar adını boş geçemezsiniz");
             RuleFor(x => x.WriterSurName).NotEmpty().WithMessage("Yazar soyadını boş geçemezsiniz");
-            RuleFor(x => x.WriterAbout).NotEmpty().WithMessage("Hakkımda kısmını boş geçemezsiniz");
             RuleFor(x => x.WriterMail).Must(Isthere).WithMessage("Bu Mail Adresi Sistemde Kayıtlı")
                                       .NotEmpty().WithMessage("Mail adresi boş geçemezsiniz")
                                       .Must(IsPassive).WithMessage("Hesabınız pasif görünüyor lütfen yönetici ile iletişime geçiniz.");
