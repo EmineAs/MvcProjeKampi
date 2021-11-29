@@ -17,8 +17,9 @@ namespace MvcProjeKampi.Controllers
         // GET: Default
         public ActionResult Headings()
         {
-            var headingvalues = headingManager.GetList();         
-            return View(headingvalues);
+            var headingvalues = headingManager.GetList();
+            var contentList = contentManager.GetList();
+            return View(Tuple.Create(headingvalues, contentList));
         }
 
         public PartialViewResult Index(int id = 0,string p="")

@@ -1,9 +1,11 @@
 ﻿@using EntityLayer.Concrete
-@model List<Heading>
+@model Tuple<List<Heading>, List<Content>>
 
 @{
     Layout = null;
 }
+
+@{ int count = 0;}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -39,18 +41,26 @@
                         <li class="nav-item has-treeview">
                             <a href="" class="nav-link">
                                 <p>
-                                    Başlıklar (@Model.Count())
+                                    Başlıklar (@Model.Item1.Count())
                                     <i class="right fas fa-angle-left"></i>
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
-                                @foreach (var item in Model)
+                                @foreach (var item in Model.Item1)
                                 {
+                                    foreach (var item2 in Model.Item2)
+                                    {
+                                        if (item2.HeadingID == item.HeadingID)
+                                        {
+                                            count++;
+                                        }
+                                    }
                                     <li class="nav-item">
                                         <a href="/Default/Headings/@item.HeadingID" class="nav-link">
-                                            <p>@item.HeadingName </p>
+                                            <p>@item.HeadingName.Substring(0,19)... (@count)</p>
                                         </a>
                                     </li>
+                                    count = 0;
                                 }
                             </ul>
                         </li>
