@@ -63,7 +63,7 @@ namespace MvcProjeKampi.Controllers
             var writerinfo = writerloginManager.GetWriter(writer.WriterMail, writer.WriterPassWord);
 
             var response = Request["g-recaptcha-response"];
-            const string secret = "6Lex8AYdAAAAAJ6kOXmcP8pPYrXhvNXtVnCeWoB9";
+            const string secret = "6LdVp2wdAAAAAPToM0BDOFfQDOXgw3BrQPnpvm2R";
             var client = new WebClient();
             var reply =
                 client.DownloadString(
