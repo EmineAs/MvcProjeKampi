@@ -55,11 +55,24 @@
                                             count++;
                                         }
                                     }
-                                    <li class="nav-item">
+                                <li class="nav-item">
+                                    @if (item.HeadingName.Length >= 20)
+                                    {
                                         <a href="/Default/Headings/@item.HeadingID" class="nav-link">
-                                            <p>@item.HeadingName.Substring(0,19)... (@count)</p>
+                                            <p>@item.HeadingName.Substring(0, 20)... (@count)</p>
                                         </a>
-                                    </li>
+                                    }
+                                    else if (item.HeadingName.Length < 20)
+                                    {
+                                        <a href="/Default/Headings/@item.HeadingID" class="nav-link">
+                                            <p>@item.HeadingName (@count)</p>
+                                        </a>
+                                    }
+
+                                </li>
+
+                                       
+                                   
                                     count = 0;
                                 }
                             </ul>

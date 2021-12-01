@@ -62,17 +62,17 @@ namespace MvcProjeKampi.Controllers
 
             var writerinfo = writerloginManager.GetWriter(writer.WriterMail, writer.WriterPassWord);
 
-            var response = Request["g-recaptcha-response"];
-            const string secret = "6LdVp2wdAAAAAPToM0BDOFfQDOXgw3BrQPnpvm2R";
-            var client = new WebClient();
-            var reply =
-                client.DownloadString(
-                    string.Format("https://www.google.com/recaptcha/api/siteverify?secret={0}&response={1}", secret, response));
+            //var response = Request["g-recaptcha-response"];
+            //const string secret = "6LdVp2wdAAAAAPToM0BDOFfQDOXgw3BrQPnpvm2R";
+            //var client = new WebClient();
+            //var reply =
+            //    client.DownloadString(
+            //        string.Format("https://www.google.com/recaptcha/api/siteverify?secret={0}&response={1}", secret, response));
 
-            var captchaResponse = JsonConvert.DeserializeObject<CaptchaResponse>(reply);
+            //var captchaResponse = JsonConvert.DeserializeObject<CaptchaResponse>(reply);
 
           
-                if (writerinfo != null && captchaResponse.Success)
+                if (writerinfo != null /*&& captchaResponse.Success*/)
                 {
                     FormsAuthentication.SetAuthCookie(writerinfo.WriterName, false);
                     Session["WriterID"] = writerinfo.WriterID;

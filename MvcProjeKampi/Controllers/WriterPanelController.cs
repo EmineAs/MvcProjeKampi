@@ -75,7 +75,8 @@ namespace MvcProjeKampi.Controllers
             heading.WriterID = (int)Session["WriterID"];
             heading.HeadingStatus = true;
             headingManager.HeadingAddBL(heading);
-            return RedirectToAction("MyHeading");
+            return RedirectToAction("AddContent","WriterPanelContent", new { @id = heading.HeadingID });
+
         }
 
         [HttpGet]

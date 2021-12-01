@@ -33,10 +33,13 @@
                                         <img class="img-circle img-sm" src="@item.Writer.WriterImage" alt="User Image">
 
                                         <div class="comment-text">
-                                            <span class="username">
-                                                @item.Writer.WriterName @item.Writer.WriterSurName
-                                                <span class="text-muted float-right">@(((DateTime)item.ContentDate).ToString("dd-MMM-yyyy"))</span>
-                                            </span><!-- /.username -->
+                                            <a  href="/WriterPanelMessage/WriterMessage/@item.WriterID" title="Bu kişiye mesaj yazmak için tıkla">
+                                                <span class="username">
+                                                    @item.Writer.WriterName @item.Writer.WriterSurName
+                                                    <span class="text-muted float-right">@(((DateTime)item.ContentDate).ToString("dd-MMM-yyyy"))</span>
+                                                </span><!-- /.username -->
+                                            </a>
+
                                             @item.ContentValue
                                         </div>
                                         <!-- /.comment-text -->

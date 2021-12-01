@@ -15,7 +15,7 @@ namespace SellUrCar.Controllers
     public class WriterPanelMessageController : Controller
     {
         MessageManager messageManager = new MessageManager(new EfMessageDal());
-        WriterManager WriterManager = new WriterManager(new EfWriterDal());
+        WriterManager writerManager = new WriterManager(new EfWriterDal());
         MessageValidator messagevalidator = new MessageValidator();
 
         public ActionResult Inbox()
@@ -58,6 +58,73 @@ namespace SellUrCar.Controllers
             string mail = (string)Session["WriterMail"];
             var messageList = messageManager.GetListTrashBox(mail);
             return View(messageList);
+        }
+
+        [HttpGet]
+        public ActionResult WriterMessage(int id)
+        {
+            var writervalue = writerManager.GetByID(id);
+            var mail = writervalue.WriterMail;
+            ViewBag.mail = mail;
+            return View();
+        }
+
+        [HttpPost, ValidateInput(false)]
+        public ActionResult WriterMessage(Message message, string menu)
+        {
+            string session = (string)Session["WriterMail"];
+
+            ValidationResult results = messagevalidator.Validate(message);
+
+            //Yeni Mesaj sayfasındaki buton isimlerine göre kontroller aşagıdaki gibi yapılır
+
+            //Eğer kullanıcı Gönder tuşuna basarsa;
+            if (menu == "send")
+            {
+                if (results.IsValid)
+                {
+                    message.SenderMail = session;
+                    message.MessageStatus = true;
+                    message.Read = false;
+                    message.MessageDate = DateTime.Parse(DateTime.Now.ToShortDateString());
+                    messageManager.MessageAddBL(message);
+                    return RedirectToAction("Inbox");
+                }
+                else
+                {
+                    foreach (var item in results.Errors)
+                    {
+                        ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                    }
+                }
+            }
+            //Eğer kullanıcı Taslaklara Kaydet tuşuna basarsa;
+            else if (menu == "draft")
+            {
+                if (results.IsValid)
+                {
+                    message.SenderMail = session;
+                    message.Draft = true;
+                    message.MessageStatus = true;
+                    message.Read = false;
+                    message.MessageDate = DateTime.Parse(DateTime.Now.ToShortDateString());
+                    messageManager.MessageAddBL(message);
+                    return RedirectToAction("Inbox");
+                }
+                else
+                {
+                    foreach (var item in results.Errors)
+                    {
+                        ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                    }
+                }
+            }
+            //Eğer kullanıcı İptal tuşuna basarsa;
+            else if (menu == "cancel")
+            {
+                return RedirectToAction("Inbox");
+            }
+            return View();
         }
 
         [HttpGet]
@@ -127,7 +194,7 @@ namespace SellUrCar.Controllers
         [HttpGet]
         public ActionResult SendMessage(int id)
         {
-            var Writervalues = WriterManager.GetByID(id);
+            var Writervalues = writerManager.GetByID(id);
             var mail = Writervalues.WriterMail;
             ViewBag.mail = mail;
             return View();
