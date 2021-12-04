@@ -2664,7 +2664,6 @@
     <Content Include="Views\WriterPanel\WriterProfile.cshtml" />
     <Content Include="Views\WriterPanel\MyHeading.cshtml" />
     <Content Include="Views\WriterPanel\NewHeading.cshtml" />
-    <Content Include="Views\WriterPanel\EditHeading.cshtml" />
     <Content Include="Views\WriterPanelMessage\Inbox.cshtml" />
     <Content Include="Views\WriterPanelMessage\MessagePartial.cshtml" />
     <Content Include="Views\WriterPanelMessage\Sendbox.cshtml" />
@@ -2699,9 +2698,11 @@
     <Content Include="Views\AdminCategory\HeadingByCategory.cshtml" />
     <Content Include="Views\WriterPanelContent\ContentByHeadingPartial.cshtml" />
     <Content Include="Views\WriterPanelMessage\WriterMessage.cshtml" />
+    <Content Include="Views\Skill\AddSkill.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="AdminLTE-3.0.4\imagefiles\small\" />
+    <Folder Include="AdminLTE-3.0.4\imagefiles\user\" />
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>

@@ -23,7 +23,6 @@ namespace MvcProjeKampi.Controllers
 
         WriterValidator writerValidator = new WriterValidator();
 
-        [HttpGet]
         public ActionResult WriterProfile()
         {
             int id = (int)Session["WriterID"];
@@ -32,22 +31,18 @@ namespace MvcProjeKampi.Controllers
         }
 
         [HttpPost]
-        public ActionResult WriterProfile(Writer writer)
+        public ActionResult WriterProfile(Writer writer, HttpPostedFileBase image)
         {
-            ValidationResult results = writerValidator.Validate(writer);
-            if (results.IsValid)
-            {
+           
+                string filename = Path.GetFileName(image.FileName);
+                string path = Path.Combine(Server.MapPath("~/AdminLTE-3.0.4/imagefiles/user/" + filename));
+                image.SaveAs(path);
+                writer.WriterImage = path;
                 writerManager.WriterUpdate(writer);
-            }
-            else
-            {
-                foreach (var item in results.Errors)
-                {
-                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
-                }
-            }
-            return RedirectToAction("MyHeading");
+            
+            return View();
         }
+
 
         public ActionResult MyHeading()
         {
@@ -113,6 +108,5 @@ namespace MvcProjeKampi.Controllers
             var headinglist = headingManager.GetList().ToPagedList(page ?? 1,7);
             return View(headinglist);
         }
-
     }
 }

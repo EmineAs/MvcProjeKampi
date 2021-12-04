@@ -1,0 +1,34 @@
+﻿
+@{
+    Layout = null;
+}
+
+<br/>
+<div class="profile-grid logo wthree">
+    <button class="btn btn-success" data-toggle="modal" data-target="#Modal1">
+        Yetenek Ekle
+    </button>
+</div>
+<div class="modal" id="Modal1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Yetenek Girişi</h2>
+            </div>
+            <form method="post" action="/Skill/AddSkill/">
+                <div class="modal-body">
+                    <label>Yetenek Adı</label>
+                    <input type="text" name="SkillName" class="form-control" />
+                    <br />
+                    <label>Yetenek Seviyesi</label>
+                    <input type="text" name="SkillLevel" class="form-control" />
+                    <br />
+                    
+                    <button class="btn btn-info">Kaydet</button>
+
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
