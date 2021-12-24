@@ -74,5 +74,7 @@ namespace MvcProjeKampi.Controllers
             var writervalue = writerManager.GetByID(id);
             return PartialView(writervalue);
         }
+
+        
     }
 }

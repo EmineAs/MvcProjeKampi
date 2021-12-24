@@ -60,7 +60,6 @@ namespace MvcProjeKampi.Controllers
         public ActionResult EditCategory(int id)
         {
             var categoryvalue = cm.GetByID(id);
-            cm.CategoryUpdate(categoryvalue);
             return View(categoryvalue);
         }
 
@@ -76,6 +75,7 @@ namespace MvcProjeKampi.Controllers
             var headingvalues = headingManager.GetListByCategoryID(id);            
             var category = cm.GetByID(id);
             ViewBag.category = category.CategoryName;
+           
             return View(headingvalues);
         }
 

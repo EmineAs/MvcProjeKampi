@@ -31,12 +31,14 @@ namespace MvcProjeKampi.Controllers
             return View(headingvalues);
         }
 
-        public ActionResult DeleteHeading(int id)
+        public ActionResult DeleteHeading(int id, string url)
         {
             var headingvalue = headingManager.GetByID(id);
             headingvalue.HeadingStatus = !headingvalue.HeadingStatus;
             headingManager.HeadingUpdate(headingvalue);
-            return RedirectToAction("Index");
+            int categoryid = headingvalue.CategoryID;
+            
+            return RedirectToAction("HeadingByCategory","AdminCategory",new { id = categoryid });
         }
 
     }

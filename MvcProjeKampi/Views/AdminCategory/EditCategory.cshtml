@@ -10,14 +10,11 @@
 <h2>Kategori Güncellemesi</h2>
 <br />
 
-<br />
-
 @using (Html.BeginForm("EditCategory", "AdminCategory", FormMethod.Post))
 {
     <div class="form-group">
-        @Html.Label("Kategori ID")
-        @Html.TextBoxFor(x => x.CategoryID, new { @class = "form-control" })
-        @Html.ValidationMessageFor(x => x.CategoryID)
+        @*@Html.Label("Kategori ID")*@
+        @Html.HiddenFor(x => x.CategoryID, new { @class = "form-control" })
 
         <br />
         @Html.Label("Kategori Adı")

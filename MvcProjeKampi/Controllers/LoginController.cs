@@ -71,22 +71,22 @@ namespace MvcProjeKampi.Controllers
 
             //var captchaResponse = JsonConvert.DeserializeObject<CaptchaResponse>(reply);
 
-          
-                if (writerinfo != null /*&& captchaResponse.Success*/)
-                {
-                    FormsAuthentication.SetAuthCookie(writerinfo.WriterName, false);
-                    Session["WriterID"] = writerinfo.WriterID;
-                    Session["WriterMail"] = writerinfo.WriterMail;
-                    Session["WriterName"] = writerinfo.WriterName;
-                    Session["WriterSurName"] = writerinfo.WriterSurName;
-                    Session["WriterImage"] = writerinfo.WriterImage;
-                    return RedirectToAction("MyContent", "WriterPanelContent");
-                }
-                else
-                {
-                    return View();
-                }
-            
+
+            if (writerinfo != null /*&& captchaResponse.Success*/)
+            {
+                FormsAuthentication.SetAuthCookie(writerinfo.WriterName, false);
+                Session["WriterID"] = writerinfo.WriterID;
+                Session["WriterMail"] = writerinfo.WriterMail;
+                Session["WriterName"] = writerinfo.WriterName;
+                Session["WriterSurName"] = writerinfo.WriterSurName;
+                Session["WriterImage"] = writerinfo.WriterImage;
+                return RedirectToAction("MyContent", "WriterPanelContent");
+            }
+            else
+            {
+                return View();
+            }
+
         }
 
         public ActionResult AdminLogOut()

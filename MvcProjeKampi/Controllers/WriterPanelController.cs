@@ -7,6 +7,7 @@ using FluentValidation.Results;
 using PagedList;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -31,19 +32,20 @@ namespace MvcProjeKampi.Controllers
         }
 
         [HttpPost]
-        public ActionResult WriterProfile(Writer writer, HttpPostedFileBase image)
+        public ActionResult WriterProfile(Writer writer)
         {
-           
-                string filename = Path.GetFileName(image.FileName);
-                string path = Path.Combine(Server.MapPath("~/AdminLTE-3.0.4/imagefiles/user/" + filename));
-                image.SaveAs(path);
-                writer.WriterImage = path;
-                writerManager.WriterUpdate(writer);
-            
+            if (Request.Files.Count > 0)
+            {
+                string filename = Path.GetFileName(Request.Files[0].FileName);
+                string path = "~/AdminLTE-3.0.4/imagefiles/users/" + filename;
+                Request.Files[0].SaveAs(Server.MapPath(path));
+                writer.WriterImage = "/AdminLTE-3.0.4/imagefiles/users/" + filename;
+            }
+            writerManager.WriterUpdate(writer);
             return View();
         }
 
-
+        
         public ActionResult MyHeading()
         {
             int id = (int)Session["WriterID"];
@@ -70,30 +72,33 @@ namespace MvcProjeKampi.Controllers
             heading.WriterID = (int)Session["WriterID"];
             heading.HeadingStatus = true;
             headingManager.HeadingAddBL(heading);
-            return RedirectToAction("AddContent","WriterPanelContent", new { @id = heading.HeadingID });
+            return RedirectToAction("AddContent", "WriterPanelContent", new { @id = heading.HeadingID });
 
         }
 
-        [HttpGet]
-        public ActionResult EditHeading(int id)
-        {
-            List<SelectListItem> valuecategory = (from x in categoryManager.GetList()
-                                                  select new SelectListItem
-                                                  {
-                                                      Text = x.CategoryName,
-                                                      Value = x.CategoryID.ToString()
-                                                  }).ToList();
-            ViewBag.vlc = valuecategory;
-            var headingvalue = headingManager.GetByID(id);
-            return View(headingvalue);
-        }
 
-        [HttpPost]
-        public ActionResult EditHeading(Heading heading)
-        {
-            headingManager.HeadingUpdate(heading);
-            return RedirectToAction("MyHeading");
-        }
+
+
+        //[HttpGet]
+        //public ActionResult EditHeading(int id)
+        //{
+        //    List<SelectListItem> valuecategory = (from x in categoryManager.GetList()
+        //                                          select new SelectListItem
+        //                                          {
+        //                                              Text = x.CategoryName,
+        //                                              Value = x.CategoryID.ToString()
+        //                                          }).ToList();
+        //    ViewBag.vlc = valuecategory;
+        //    var headingvalue = headingManager.GetByID(id);
+        //    return View(headingvalue);
+        //}
+
+        //[HttpPost]
+        //public ActionResult EditHeading(Heading heading)
+        //{
+        //    headingManager.HeadingUpdate(heading);
+        //    return RedirectToAction("MyHeading");
+        //}
 
         public ActionResult DeleteHeading(int id)
         {
@@ -105,8 +110,10 @@ namespace MvcProjeKampi.Controllers
 
         public ActionResult AllHeading(int? page)
         {
-            var headinglist = headingManager.GetList().ToPagedList(page ?? 1,7);
+            var headinglist = headingManager.GetList().ToPagedList(page ?? 1, 7);
             return View(headinglist);
         }
+
+       
     }
 }

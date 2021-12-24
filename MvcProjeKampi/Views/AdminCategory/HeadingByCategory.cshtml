@@ -5,53 +5,132 @@
     ViewBag.Title = "HeadingByCategory";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
-
-
-<!DOCTYPE html>
-<html>
+@{ string color = "", statuscolor = "", status = "", msg = "";}
 <body class="hold-transition sidebar-mini">
-    <!-- Site wrapper -->
-    <div class="wrapper">
-        <section class="content">
-            <div class="container-fluid">
-
-                <!-- Timelime example  -->
-                <div class="row">
-                    <div class="col-md-12">
-                        <!-- The time line -->
-                        <div class="timeline">
-                            <!-- timeline time label -->
-                            
-                            <div class="text-center">
-                                <h4><span class="bg-success">@ViewBag.heading</span></h4>
-                            </div>
-
-                            @foreach (var item in Model)
-                            {
-                                <div>
-                                    <i class="fas fa-comment bg-yellow"></i>
-                                    <div class="timeline-item">
-                                        <h3 class="timeline-header">
-                                            <a href="/Writer/WriterProfile/@item.WriterID">@item.Writer.WriterName @item.Writer.WriterSurName</a>
-                                            @*<div class="text-md-right">@(((DateTime)item.ContentDate).ToString("dd-MMM-yyyy"))</div>*@
-                                        </h3>
-                                        <div class="timeline-body">
-                                            @item.HeadingName
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- END timeline item -->
-                            }
-                        </div>
-                    </div>
-                    <!-- /.col -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
                 </div>
             </div>
-            <!-- /.timeline -->
+        </div><!-- /.container-fluid -->
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <!-- Default box -->
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">@ViewBag.category Kategorisine ait Başlıklar </h3>
+                <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                        <i class="fas fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
 
-        </section>
-        <!-- /.content -->
-    </div>
-    <!-- ./wrapper -->
-</body>
-</html>
+            <div class="card-body p-0">
+                <table class="table table-striped projects">
+                    <thead>
+                        <tr>
+                            <th style="width: 20%">
+                                Başlık Adı
+                            </th>
+                            <th style="width: 15%">
+                                Oluşturan Yazar
+                            </th>
+                            <th style="width: 10%">
+                                Durum
+                            </th>
+                            <th style="width: 8%" class="text-center">
+                                Kategori
+                            </th>
+                            <th style="width: 20%">
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            if (item.Category.CategoryName == "Tiyatro")
+                            {
+                                color = "badge badge-warning";
+                            }
+                            if (item.Category.CategoryName == "Spor")
+                            {
+                                color = "badge badge-success";
+                            }
+                            if (item.Category.CategoryName == "Yazılım")
+                            {
+                                color = "badge badge-info";
+                            }
+                            if (item.Category.CategoryName == "Dizi")
+                            {
+                                color = "badge badge-secondary";
+                            }
+                            if (item.Category.CategoryName == "Film")
+                            {
+                                color = "badge badge-dark";
+                            }
+                            switch (item.HeadingStatus)
+                            {
+                                case true:
+                                    status = "Aktif";
+                                    statuscolor = "badge badge-success";
+                                    msg = "Pasif Yap";
+                                    break;
+                                case false:
+                                    status = "Pasif";
+                                    statuscolor = "badge badge-danger";
+                                    msg = "Aktif Yap";
+                                    break;
+                            }
+                            <tr>
+                                <td>
+                                    <a>
+                                        @item.HeadingName
+                                    </a>
+                                    <br />
+                                    <small>
+                                        @(((DateTime)item.HeadingDate).ToString("dd-MMM-yyyy"))
+                                    </small>
+                                </td>
+                                <td>
+                                    @*<button class="badge badge-"*@
+                                    <ul class="list-inline">
+                                        <li class="list-inline-item">
+                                            <img alt="Avatar" class="table-avatar" src="@item.Writer.WriterImage">  @item.Writer.WriterName @item.Writer.WriterSurName
+                                        </li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <span class="@statuscolor">@status</span>
+                                </td>
+                                <td class="project-state">
+                                    <span class="@color">@item.Category.CategoryName</span>
+                                </td>
+                                <td class="project-actions text-right">
+                                    <a class="btn btn-primary btn-sm" href="/Content/ContentByHeading/@item.HeadingID">
+                                        <i class="fas fa-folder">
+                                        </i>
+                                        Yazılar
+                                    </a>
+                                    <a class="btn btn-danger btn-sm" title="@msg" href="/Heading/DeleteHeading/@item.HeadingID">
+                                        <i class="fas fa-trash">
+                                        </i>
+                                        @msg
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+    </section>
+
+   

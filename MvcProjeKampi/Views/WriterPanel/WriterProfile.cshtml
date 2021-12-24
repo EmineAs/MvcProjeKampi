@@ -8,18 +8,18 @@
 <br />
 <h2>Profilinizi Düzenleyin</h2>
 
-@using (Html.BeginForm("WriterProfile", "WriterPanel", FormMethod.Post))
+@using (Html.BeginForm("WriterProfile", "WriterPanel", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
 <div class="form-group">
     @Html.HiddenFor(x => x.WriterID)
-    @*@Html.HiddenFor(x => x.WriterImage)
-        @Html.HiddenFor(x => x.WriterStatus)
-        @Html.HiddenFor(x => x.WriterPassWord)*@
+    @Html.HiddenFor(x => x.WriterStatus)
+    @Html.HiddenFor(x => x.WriterPassWord)
 
     <img src="@Model.WriterImage" width="150" height="120" /><br />
+
     <div class="col-md-10">
-        @Html.EditorFor(x => x.WriterImage, new { htmlAttributes = new { @class = "form-control", type = "file", multiple = "true", @Value = "2.png" } })
-    </div>
+            @Html.EditorFor(x => x.WriterImage, new { htmlAttributes = new { @class = "form-control", type = "file", multiple = "true", @Value = "2.png" } })
+        </div>
     <table class="table d-xxl-table-row">
         <tr>
             <th width="10%">

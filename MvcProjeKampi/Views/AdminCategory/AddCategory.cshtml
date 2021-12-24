@@ -5,8 +5,9 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<script src="~/Scripts/jquery-3.3.1.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.33.1/sweetalert2.css">
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.33.1/sweetalert2.js"></script>
 
 <h1>Yeni Kategori Ekleme Safyası</h1>
 <br />
@@ -31,7 +32,7 @@
                     text: "Kategori başarılı bir şekilde eklendi.",
                     buttons: false,
                     icon: "success",
-                    timer: 10000
+                    timer: 3000
                 }).then(function () {
                     window.location.reload(true);
                     tr.hide();
