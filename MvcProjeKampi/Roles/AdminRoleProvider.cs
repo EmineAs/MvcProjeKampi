@@ -21,6 +21,7 @@ namespace MvcProjeKampi.Roles
             throw new NotImplementedException();
         }
 
+
         public override bool DeleteRole(string roleName, bool throwOnPopulatedRole)
         {
             throw new NotImplementedException();
