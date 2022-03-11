@@ -31,7 +31,7 @@ namespace MvcProjeKampi.Controllers
                 events.Add(new CalendarEvent()
                 {
                     title = item.HeadingName,
-                    start = item.HeadingDate.AddDays(1),
+                    start = item.HeadingDate,
                     allDay = true
                 });
 
